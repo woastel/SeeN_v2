@@ -31,16 +31,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'eut.apps.EutConfig',
-    'climaticmeasurement.apps.ClimaticmeasurementConfig',
-    'system.apps.SystemConfig',
-    'todos.apps.TodosConfig',
     'overview.apps.OverviewConfig',
     'accounts.apps.AccountsConfig',
-    'schedule.apps.ScheduleConfig',
-    'components.apps.ComponentsConfig',
+
     'measurement.apps.MeasurementConfig',
 
+    'eut.apps.EutConfig',
+    'system.apps.SystemConfig',
+    'components.apps.ComponentsConfig',
+
+    'todos.apps.TodosConfig',
+    'schedule.apps.ScheduleConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,8 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'crispy_forms',
-
 ]
 
 
