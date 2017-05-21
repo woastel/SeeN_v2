@@ -1,0 +1,42 @@
+{% extends 'system/base_system.html' %}
+
+{% block system_body %}
+
+  <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+  <h1> {{panel_titel}} </h1>
+
+  <script>
+    var table = $(document).ready(function(){
+        $('#system_list_view_table_id').DataTable();
+    });
+  </script>
+
+  <div class="table-responsive">
+    <table id="system_list_view_table_id" class="table table-bordered">
+      <thead>
+        <tr class="warning">
+          <td>ID</td>
+          <td>Name</td>
+          <td>Model</td>
+          <th>Owner</th>
+          <th>Co Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in system_list %}
+          <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="{% url 'system:system_detail' item.id %}">{{ item.name }}</a></td>
+            <th>{{ item.model }}</th>
+            <th>{{ item.owner }}</th>
+            <th>{{ item.owner_co }}</th>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+{% endblock %}

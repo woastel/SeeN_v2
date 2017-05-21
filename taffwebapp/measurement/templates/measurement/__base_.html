@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+  <!-- View over the options -->
+  <div class="col-lg-2">
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Measuremnts</h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'measurement:mc_index' %}';">
+            Climatic</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'measurement:memi_index' %}';">
+            EMI</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '#';">
+            Air Flow</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '#';">
+            Chassis Characteristic</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '#';">
+            RV</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- place for the views -->
+  <div class="col-lg-10">
+
+    {% block measurement_body %}
+
+    {% endblock %}
+
+  </div>
+
+</div>
+
+{% endblock %}

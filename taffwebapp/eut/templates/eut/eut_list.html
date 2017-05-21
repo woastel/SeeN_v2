@@ -1,0 +1,24 @@
+{% extends 'eut/base_eut.html' %}
+
+{% block eut_body %}
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'components/style.css' %}" />
+
+<div class="row">
+  <div class="col-lg-12">
+
+    {% for eut in eutlist %}
+
+      <a href="{% url 'eut:eut_detail' eut.id %}"><p> {{ eut }} </p></a>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+
+
+{% endblock %}

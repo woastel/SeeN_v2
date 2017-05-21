@@ -1,0 +1,33 @@
+{% extends 'system/base_system.html' %}
+
+{% block system_body %}
+
+  <h1> Das ist die schedule index </h1>
+
+
+  <h3> System List </h3>
+  {% for i in system_list %}
+      <p> {{ i }}</p>
+  {% endfor %}
+
+
+  <h3> System Model List </h3>
+  {% for i in system_model_list %}
+      <p> {{ i }}</p>
+  {% endfor %}
+
+
+  <h3> Milestone List </h3>
+  {% for i in milestone_list %}
+      <p> {{ i }}</p>
+  {% endfor %}
+
+
+  <h3> msdb Conection List </h3>
+  {% for i in msdb_connection %}
+      <p> {{ i }}</p>
+  {% endfor %}
+
+
+
+{% endblock %}

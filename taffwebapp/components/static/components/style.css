@@ -1,0 +1,18 @@
+.panel-default > .panel-heading-custom1{
+  background-image: none;
+  background-color: #faac25;
+  /*background-color: #cf5b95;*/
+  color: #000000;
+}
+.panel-default > .panel-heading-custom2{
+  background-image: none;
+  background-color: #5f2f9e;
+  /*background-color: #ed6b71;*/
+  color: #ffffff;
+}
+.panel-default > .panel-heading-custom3{
+  background-image: none;
+  background-color: #09a176;
+  /*background-color: #f07c4a;*/
+  color: #ffffff;
+}

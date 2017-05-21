@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+
+
+  <!-- View over the options -->
+  <div class="col-lg-2">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <h3> Components </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:index' %}';">
+            Index
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:component_list' %}';">
+            Component List
+          </button>
+        </div>
+
+        <h3> Create Component </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_chassis' %}';">
+            Chassis
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_chassisAddOn' %}';">
+            Chassis Add On
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_motherboard' %}';">
+            Motherboard
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_cpu' %}';">
+            CPU
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_memory' %}';">
+            Memory
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_psu' %}';">
+            PSU
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_hdd' %}';">
+            HDD
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_heatsink' %}';">
+            Heat Sink
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_fan' %}';">
+            Fan
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_cable' %}';">
+            Cable
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_pcba' %}';">
+            PCAB
+          </button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_pciectrl' %}';">
+            PCIe Ctrl
+          </button>
+        </div>
+
+        <h3> Create Types (only admin) </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:create_vendor' %}';">
+            Componenet Vendor
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- place for the views -->
+  <div class="col-lg-10">
+
+    {% block components_body %}
+
+    {% endblock %}
+
+  </div>
+
+</div>
+
+{% endblock %}

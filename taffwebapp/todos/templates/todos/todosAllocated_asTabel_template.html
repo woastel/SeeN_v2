@@ -1,0 +1,116 @@
+<!--
+ ''''''''''''''
+  HTML File
+ '''''''''''''''
+    - with two tabels
+      - Todo allocated - Items Status OPEN
+      - Todo allocated - Items Status DONE
+    - and a .js script for dataTables
+
+-->
+
+<!--  Includes
+       - these stylesheets and scripts are nessesary for the dataTables view
+       - with theses scripts you can search throgh the tabel or sort it by name
+       - for more information visit: https://datatables.net/
+-->
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+
+<!--  Script for the data table view
+        for table #4345645634 -->
+<script>
+  $(document).ready(function(){
+      $('#4345645634').DataTable();
+  });
+</script>
+
+<!--  Tabel panel -->
+<!--  Todo allocated - Items Status OPEN -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Todo allocated - Items Status OPEN</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="4345645634" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ToDoListItem ID #</th>
+            <th>ToDo ID #</th>
+            <th>ToDo Name</th>
+            <th>User</th>
+            <th>creator</th>
+            <th>priorityLevel</th>
+            <th>must_done_date</th>
+            <th>status_done</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in todo_list_for_tabel_new_open %}
+              <tr>
+                <td><a href="{% url 'todos:todos_allocated_update' item.id %}">Change Status: {{ item.id }}</a></td>
+                <td><a href="{% url 'todos:todos_detail' item.todo.id %}">Show Details: {{ item.todo.id }}</a></td>
+                <td>{{ item.todo.name }}</td>
+                <td>{{ item.user.username }}</td>
+                <td>{{ item.todo.creator }}</td>
+                <td>{{ item.todo.priorityLevel }}</td>
+                <td>{{ item.must_done_date }}</td>
+                <td>{{ item.status_done }}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<!--  Script for the data table view
+        for table #98383824823 -->
+<script>
+  $(document).ready(function(){
+      $('#98383824823').DataTable();
+  });
+</script>
+
+<!--  Tabel panel -->
+<!--  Todo allocated - Items Status DONE -->
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h1 class="panel-title">Todo allocated - Items Status DONE</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="98383824823" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ToDoListItem ID #</th>
+            <th>ToDo ID #</th>
+            <th>ToDo Name</th>
+            <th>User</th>
+            <th>creator</th>
+            <th>priorityLevel</th>
+            <th>must_done_date</th>
+            <th>status_done</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in todo_list_for_tabel_new_done %}
+              <tr>
+                <td><a href="{% url 'todos:todos_allocated_update' item.id %}">Change Status: {{ item.id }}</a></td>
+                <td><a href="{% url 'todos:todos_detail' item.todo.id %}">Show Details: {{ item.todo.id }}</a></td>
+                <td>{{ item.todo.name }}</td>
+                <td>{{ item.user.username }}</td>
+                <td>{{ item.todo.creator }}</td>
+                <td>{{ item.todo.priorityLevel }}</td>
+                <td>{{ item.must_done_date }}</td>
+                <td>{{ item.status_done }}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

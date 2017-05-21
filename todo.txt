@@ -1,0 +1,35 @@
+
+
+
+
+     _____         _
+    |_   _|__   __| | ___  ___
+      | |/ _ \ / _` |/ _ \/ __|
+      | | (_) | (_| | (_) \__ \
+      |_|\___/ \__,_|\___/|___/
+
+
+
+
+
+
+Todos : Allgehmein
+**************************
+  - Eine grafische anzeige wie viel prozent der componenten die in einem
+    System freigegeben werden sollen waren schon in test ???
+        - unterschiedliche auswerten von EMV KLIMA RV und sonstiges
+        - eine relevantz System erstellen ist eine Komponente fuer einen
+          test relevent
+
+
+Todos : Climaticmeasurement:
+**********************************
+  - Gruppen von Messungen erstellen
+  - Analyser System fpr Klimamessung erstellen
+
+
+
+Todos : EUT Application:
+***********************************
+  -   flag in dem Model EUT erstellen damit man einen EUT nicht mehr
+      ändern kann nachdem er an einen Messung gekoppelt wurde.

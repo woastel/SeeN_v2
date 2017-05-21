@@ -1,0 +1,149 @@
+{% extends 'system/base_system.html' %}
+
+{% block system_body %}
+
+<!-- system detail Headline -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1>{{panel_titel}}</h1>
+  </div>
+</div>
+
+<!-- Alert Boxen -->
+<div class="row">
+  <div class="col-lg-12">
+    {% if alert_danger_avalible == True %}
+      <div class="alert alert-danger" role="alert">
+        <p> {{ alert_danger }} </p>
+      </div>
+    {% endif %}
+    {% if alert_success_avalible == True %}
+      <div class="alert alert-success" role="alert">
+        <p> {{ alert_success }} </p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Component Detail Box -->
+<div class="row">
+  <div class="col-lg-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Component: [ {{ system.name }} ] ({{system.id}})</h3>
+      </div>
+      <div class="panel-body">
+        <p>Name: {{system.name}}</p>
+        <p>Model: {{system.model.name}}</p>
+        <p>Owner: {{system.owner}}</p>
+        <p>Ownwer Co: {{system.owner_co}}</p>
+        <p>Informations: </p>
+        <textarea name="Text1" cols="70" rows="10">{{system.info}}</textarea>
+        <h3> MS Connections: </h3>
+
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>Milestone</td>
+                <td>System</td>
+                <td>Date</td>
+                <td>Delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in msdbconnection_list %}
+                <tr>
+                  <th>{{ item.milestone }}</th>
+                  <th>{{ item.system.name }}</th>
+                  <th>{{ item.creation_date }}</th>
+                  <th><a href="{% url 'system:delete_msdb_connection' item.id %}">
+                    <span class="glyphicon glyphicon-trash">(id - {{item.id}})</span>
+                  </a></th>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">System Options</h3>
+      </div>
+      <div class="panel-body">
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <h3>System Details</h3>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'system:update_system' system.id %}';">
+            Update System Details
+          </button>
+
+          <h3>Milestones</h3>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'system:create_ms_connection_from_system' system.id %}';">
+            Add a Milestone
+          </button>
+
+          <h3>Components</h3>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'system:create_component_connection' system.id %}';">
+            Add a Component
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Components from the System</h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>System</td>
+                <td>component_count</td>
+                <td>component</td>
+                <td>Delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in system_component_connection_list %}
+                <tr>
+                  <th>{{ item.system }}</th>
+                  <th>{{ item.component_count }}</th>
+                  <th>{{ item.component }}</th>
+                  <th><a href="{% url 'system:delete_component_connection' item.id %}">
+                    <span class="glyphicon glyphicon-trash"> (id - {{item.id}}) </span>
+                  </a></th>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Admin Options</h3>
+      </div>
+      <div class="panel-body">
+        <p><a href="{% url 'system:delete_system' system.id %}"> Delete this System</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

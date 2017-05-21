@@ -1,0 +1,67 @@
+<!--
+ ''''''''''''''
+  HTML File
+ '''''''''''''''
+    - with two tabels
+      - Todo allocated - Items Status OPEN
+      - Todo allocated - Items Status DONE
+    - and a .js script for dataTables
+
+-->
+
+<!--  Includes
+       - these stylesheets and scripts are nessesary for the dataTables view
+       - with theses scripts you can search throgh the tabel or sort it by name
+       - for more information visit: https://datatables.net/
+-->
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+
+<!--  Script for the data table view
+        for table #9993293223 -->
+<script>
+  $(document).ready(function(){
+      $('#9993293223').DataTable();
+  });
+</script>
+
+<!--  Tabel panel -->
+<!--  Todo allocated - Items Status OPEN -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Todo Objects</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="9993293223" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ToDo ID #</th>
+            <th>Name</th>
+            <th>priorityLevel</th>
+            <th>createtion_date</th>
+            <th>Creator</th>
+            <th>must_done_date</th>
+            <th>public</th>
+            <th>must_done_date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in todo_list_for_tabel %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td><a href="{% url 'todos:todos_detail' item.id %}">{{ item.name }}</a></td>
+                <td>{{ item.priorityLevel.name }}</td>
+                <td>{{ item.createtion_date }}</td>
+                <td>{{ item.creator }}</td>
+                <td>{{ item.must_done_date }}</td>
+                <td>{{ item.public }}</td>
+                <td>{{ item.status_done }}</td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

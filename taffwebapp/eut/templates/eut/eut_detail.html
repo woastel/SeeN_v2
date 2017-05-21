@@ -1,0 +1,184 @@
+{% extends 'eut/base_eut.html' %}
+
+{% block eut_body %}
+
+{% load static %}
+
+<!-- CSS and JS files for something -->
+<link rel="stylesheet" type="text/css" href="{% static 'components/style.css' %}" />
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<!-- Eut Heatline -->
+<div class="row">
+  <div class="col-lg-12">
+    <h1>EUT Detail</h1>
+  </div>
+</div>
+
+<!-- Alert Boxen -->
+<div class="row">
+  <div class="col-lg-12">
+    {% if alert_danger_avalible == True %}
+      <div class="alert alert-danger" role="alert">
+        <p> {{ alert_danger }} </p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Eut detail Box -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">EUT: [ {{ eut.name }} ] ({{eut.id}})</h3>
+      </div>
+      <div class="panel-body">
+        <p>Eut Name: {{ eut.name }} </p>
+        <p>Information: {{ eut.info }} </p>
+        <p>Creator: {{ eut.user_creator }} </p>
+        <p>Modified by: {{ eut.user_updater }} </p>
+        <p>Creation date: {{ eut.date_creation }} </p>
+        <p>Updated: {{ eut.date_updateed }} </p>
+        <p>System: {{ eut.system.name }} </p>
+        <p>EUT is connectet to measurement: {{ eut.is_connected_to_climaticmeasurement }} </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Component Form -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+
+        {% if eut.is_connected_to_climaticmeasurement == False %}
+
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-lg-12">
+              <h4> Add Component to EUT </h4>
+            </div>
+            <div class="col-lg-10">
+              {{form}}
+            </div>
+            <div class="col-lg-2">
+
+                <button type="submit" class="btn btn-success">Add</button>
+
+            </div>
+          </form>
+
+        {% else %}
+          <p>The EUT is contected to a measurement you cant cange the component connections </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script for Datatable Components from EUT -->
+<script>
+  var table = $(document).ready(function(){
+      $('#eut_complist').DataTable();
+  });
+</script>
+
+<!-- Datatable - Components from the EUT  -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Eut Components</h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table id="eut_complist" class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <th>Infotext </th>
+                <th>count #</th>
+                <th>Component</th>
+                <th>Remove from Eut</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in component_connection_list %}
+                  <tr>
+                    <td>{{ item.info }}</td>
+                    <td>{{ item.component_count }}</td>
+                    <td><a href="{% url 'components:component_detail' item.component.component_id %}">
+                        {{ item.component.name }}</a></td>
+
+                    {% if eut.is_connected_to_climaticmeasurement == False %}
+                      <td><a href="{% url 'eut:eut_delete_component_to_eut_connection' item.id %}">
+                          Remove</a></td>
+                    {% else %}
+                      <td><strike>Remove</strike></td>
+                    {% endif %}
+
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script for Datatable Components from EUT -->
+<script>
+  var table = $(document).ready(function(){
+      $('#comp_coni_list_table').DataTable();
+  });
+</script>
+
+<!-- Datatable - Components from the EUT  -->
+<div class="row">
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">DEBUG: Info --- Component connection List </h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table id="comp_coni_list_table" class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <th>ID </th>
+                <th>Info</th>
+                <th>User Creator</th>
+                <th>date creation</th>
+                <th>Count #</th>
+                <th>Eut id</th>
+                <th>Eut name</th>
+                <th>component id </th>
+                <th>component name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in component_connection_list %}
+                  <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.info }}</td>
+                    <td>{{ item.user_creator }}</td>
+                    <td>{{ item.date_creation }}</td>
+                    <td>{{ item.component_count }}</td>
+                    <td>{{ item.eut.id }}</td>
+                    <td>{{ item.eut.name }}</td>
+                    <td>{{ item.component.id }}</td>
+                    <td>{{ item.component.name }}</td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

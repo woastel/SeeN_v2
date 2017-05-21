@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+
+  <!-- Einbinden des pcie table template als object -->
+  {% with object as object %}
+  {% include 'todos/todos_detailview_template.html' %}
+  {% endwith %}
+
+{% endblock %}

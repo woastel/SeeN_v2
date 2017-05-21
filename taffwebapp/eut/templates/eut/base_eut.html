@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+  <!-- View over the options -->
+  <div class="col-lg-2">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> EUTs</h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'eut:index' %}';">
+            Index</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'eut:eut_list' %}';">
+            Eut List</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> Create: </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'eut:eut_create' %}';">
+              Eut</button>
+            <button type="button" class="btn btn-default" onclick="#">
+              <strike> Pcie Table</strike></button>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- place for the views -->
+  <div class="col-lg-10">
+
+    {% block eut_body %}
+
+    {% endblock %}
+
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,309 @@
+{% extends 'schedule/base_schedule.html' %}
+
+{% block schedule_body %}
+
+
+<!--
+ ''''''''''''''
+  HTML File
+ '''''''''''''''
+    - with two tabels
+      - Todo allocated - Items Status OPEN
+      - Todo allocated - Items Status DONE
+    - and a .js script for dataTables
+
+-->
+
+<!--  Includes
+       - these stylesheets and scripts are nessesary for the dataTables view
+       - with theses scripts you can search throgh the tabel or sort it by name
+       - for more information visit: https://datatables.net/
+-->
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+
+
+
+<!--  Script for the data table view  -->
+<script>
+  var table = $(document).ready(function(){
+      $('#4345645634').DataTable();
+  });
+</script>
+<!--  Tabel panel -->
+<!--  Schedule Items -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Schedule List</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="4345645634" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ID </th>
+            <th>Name / View</th>
+            <th>created_user</th>
+            <th>creation_date</th>
+            <th>system</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in list_schedule %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td><a href="{% url 'schedule:view_a_Schedule' item.id %}"> {{ item.name }}</a></td>
+                <td>{{ item.created_user }}</td>
+                <td>{{ item.creation_date }}</td>
+                <td>{{ item.system }}</td>
+                <td><a href="{% url 'schedule:update_schedule' item.id %}">
+                  Update - {{ item.id }}</a></td>
+                <td><a href="{% url 'schedule:delete_schedule' item.id %}">
+                  Delete - {{ item.id }}</a></td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--  Script for the data table view  -->
+<script>
+  $(document).ready(function(){
+      $('#333').DataTable();
+  });
+</script>
+<!--  Tabel panel -->
+<!--  List of Material Items -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Material Item List</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="333" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ID </th>
+            <th>Name</th>
+            <th>created_user</th>
+            <th>creation_date</th>
+            <th>delivery_date</th>
+            <th>schedule</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in list_item_material %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.created_user }}</td>
+                <td>{{ item.creation_date }}</td>
+                <td>{{ item.delivery_date }}</td>
+                <td>{{ item.schedule }}</td>
+                <td><a href="{% url 'schedule:update_schedule_item_material' item.id %}">
+                  Update - {{ item.id }}</a></td>
+                <td><a href="{% url 'schedule:delete_schedule_item_material' item.id %}">
+                  Delete - {{ item.id }}</a></td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--  Script for the data table view  -->
+<script>
+  $(document).ready(function(){
+      $('#493939').DataTable();
+  });
+</script>
+<!--  Tabel panel -->
+<!--  List of Measurement Items -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Measurement Item List</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="493939" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ID </th>
+            <th>Name</th>
+            <th>created_user</th>
+            <th>creation_date</th>
+            <th>delivery_date</th>
+            <th>measurement_type</th>
+            <th>schedule</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in list_item_measurement %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.created_user }}</td>
+                <td>{{ item.creation_date }}</td>
+                <td>{{ item.delivery_date }}</td>
+                <td>{{ item.measurement_type }}</td>
+                <td>{{ item.schedule }}</td>
+                <td><a href="{% url 'schedule:update_schedule_item_measurement' item.id %}">
+                  Update - {{ item.id }}</a></td>
+                <td><a href="{% url 'schedule:delete_schedule_item_measurement' item.id %}">
+                  Delete - {{ item.id }}</a></td>
+              </tr>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--  Script for the data table view  -->
+<script>
+  $(document).ready(function(){
+      $('#774637').DataTable();
+  });
+</script>
+<!--  Tabel panel -->
+<!--  List of Certification Items -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Certification Item List</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="774637" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ID </th>
+            <th>Name</th>
+            <th>created_user</th>
+            <th>creation_date</th>
+            <th>certificatio_type</th>
+            <th>schedule</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in list_item_certification %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.created_user }}</td>
+                <td>{{ item.creation_date }}</td>
+                <td>{{ item.certificatio_type }}</td>
+                <td>{{ item.schedule }}</td>
+                <td><a href="{% url 'schedule:update_schedule_item_certification' item.id %}">
+                  Update - {{ item.id }}</a></td>
+                <td><a href="{% url 'schedule:delete_schedule_item_certification' item.id %}">
+                  Delete - {{ item.id }}</a></td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--  Script for the data table view  -->
+<script>
+  $(document).ready(function(){
+      $('#77323234637').DataTable();
+  });
+</script>
+<!--  Tabel panel -->
+<!--  List of Certification Items -->
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h1 class="panel-title">Type Measurement List</h1>
+  </div>
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table id="77323234637" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <th>ID </th>
+            <th>Name</th>
+            <th>estimated_days</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in list_type_measurement %}
+              <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.estimated_days }}</td>
+                <td><a href="{% url 'schedule:update_measurement_type' item.id %}">
+                  Update - {{ item.id }}</a></td>
+                <td><a href="{% url 'schedule:delete_measurement_type' item.id %}">
+                  Delete - {{ item.id }}</a></td>
+              </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+  <!--  Script for the data table view  -->
+  <script>
+    $(document).ready(function(){
+        $('#772224637').DataTable();
+    });
+  </script>
+  <!--  Tabel panel -->
+  <!--  List of Certification Items -->
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h1 class="panel-title">Type Certification List</h1>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table id="772224637" class="table table-bordered">
+          <thead>
+            <tr class="warning">
+              <th>ID </th>
+              <th>Name</th>
+              <th>estimated_days</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in list_type_certification %}
+                <tr>
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.estimated_days }}</td>
+                  <td><a href="{% url 'schedule:update_certification_type' item.id %}">
+                    Update - {{ item.id }}</a></td>
+                  <td><a href="{% url 'schedule:delete_certification_type' item.id %}">
+                    Delete - {{ item.id }}</a></td>
+                </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

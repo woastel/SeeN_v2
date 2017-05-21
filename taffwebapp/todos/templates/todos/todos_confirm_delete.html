@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+<!--
+
+OLD CODE
+
+<form action="" method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm" />
+</form>
+-->
+
+{% block body %}
+
+<div class="container">
+  <div class="row col-lg-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Delete this object</h3>
+
+      </div>
+      <div class="panel-body">
+
+        <div class="col-lg-12">
+          <p>ID: {{ object.id }} </p>
+          <p>name: {{ object.name }} </p>
+          <p>status: {{ object.status }} </p>
+          <p>system: {{ object.system }} </p>
+          <p>priorityLevel: {{ object.priorityLevel }} </p>
+          <p>creator: {{ object.creator }} </p>
+          <p>createtion_date: {{ object.createtion_date }} </p>
+          <p>priorityLevel: {{ object.priorityLevel }} </p>
+          <p>status: {{ object.status }} </p>
+          <p>must_done_msdb: {{ object.must_done_msdb }} </p>
+          <p>must_done_date: {{ object.must_done_date }} </p>
+          <textarea name="Text1" cols="40" rows="5">{{ object.text }}</textarea>
+
+        </div>
+
+
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+
+          {% csrf_token %}
+
+
+
+
+          <div class="form-group">
+            <div class="col-lg-offset-10 col-lg-2">
+              <button type="submit" value="Confirm" class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

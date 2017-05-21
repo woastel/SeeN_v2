@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+  <!-- View over the options -->
+  <div class="col-lg-2">
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> Views: </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'todos:todos_allocated_list' %}';">Todos</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'todos:todos_list' %}';">Todo Objects</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'todos:todos_status_list' %}';">Todo Objects Status</button>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> Create: </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'todos:todos_create2' %}';">Todos</button>
+          <button type="button" class="btn btn-default text-left">Other -inactiv-</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- place for the views -->
+  <div class="col-lg-10">
+
+    {% block todo_body %}
+
+    {% endblock %}
+
+  </div>
+
+</div>
+
+{% endblock %}

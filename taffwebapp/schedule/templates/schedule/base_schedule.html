@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+  <!-- View over the options -->
+  <div class="col-lg-2">
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> View Schedules: </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:view_all_objects' %}';">
+                  View all objects</button>
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_schedule_item_material' %}';">
+                  Debug </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> Create Schedule Items </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_schedule' %}';">
+                  Schedule</button>
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_schedule_item_certification' %}';">
+                  Certification</button>
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_schedule_item_measurement' %}';">
+                  Measurement</button>
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_schedule_item_material' %}';">
+                  Material</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3> Create Schedule Items Types </h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_certification_type' %}';">
+                  Certification Type</button>
+
+          <button type="button" class="btn btn-default"
+                  onclick="location.href = '{% url 'schedule:create_measurement_type' %}';">
+                  Measurement Type</button>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- place for the views -->
+  <div class="col-lg-10">
+
+    {% block schedule_body %}
+
+    {% endblock %}
+
+  </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,485 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+<style>
+
+.item-box-color1{
+  background-color: #faac25;
+  color: black;
+}
+
+.item-box-color2{
+  background-color: #5f2f9e;
+  color: white;
+}
+
+.item-box-color3{
+  background-color: #09a176;
+  color: white;
+}
+
+.panel-default > .panel-heading-custom{
+  background-image: none;
+  background-color: #cf5b95;
+  color: #ffffff;
+}
+.panel-default > .panel-heading-custom2{
+  background-image: none;
+  background-color: #ed6b71;
+  color: #ffffff;
+}
+.panel-default > .panel-heading-custom3{
+  background-image: none;
+  background-color: #f07c4a;
+  color: #ffffff;
+}
+
+</style>
+
+
+
+
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-header">
+        <h1>Example page header <small></small></h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-lg-12">
+      <h1>Debug Links:</h1>
+    </div>
+    <div class="col-lg-12">
+      <p><a href="{% url 'measurement:m_index' %}"> Measurement Index Page</a></p>
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-lg-2">
+      <div class="panel panel-default item-box-color1">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2 ">
+      <div class="panel panel-default item-box-color2">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="panel panel-default item-box-color3">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-10">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-5">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-9">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-10">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-11">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h4> Informations</h4>
+          <p> Username: {{username}} </p>
+          <p> Open Todos: {{todos_open}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}

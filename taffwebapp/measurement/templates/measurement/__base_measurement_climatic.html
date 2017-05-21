@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+
+  <!-- View over the options -->
+  <div class="col-lg-2">
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Measurement Overview</h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'measurement:m_index' %}';">
+            back to Overview</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Climatic Measurement</h3>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'measurement:mc_create_bymcps' %}';">
+            Create by mcps</button>
+          <button type="button" class="btn btn-default" onclick="location.href = '#';">
+            View all</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- place for the views -->
+  <div class="col-lg-10">
+
+    {% block measurement_climatic_body %}
+
+    {% endblock %}
+
+  </div>
+
+</div>
+
+{% endblock %}

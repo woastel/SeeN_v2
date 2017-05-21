@@ -1,0 +1,249 @@
+{% extends 'schedule/base_schedule.html' %}
+
+{% block schedule_body %}
+
+
+  <!--
+   ''''''''''''''
+    HTML File
+   '''''''''''''''
+      - with two tabels
+        - Todo allocated - Items Status OPEN
+        - Todo allocated - Items Status DONE
+      - and a .js script for dataTables
+
+  -->
+
+  <!--  Includes
+         - these stylesheets and scripts are nessesary for the dataTables view
+         - with theses scripts you can search throgh the tabel or sort it by name
+         - for more information visit: https://datatables.net/
+  -->
+  <link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+  <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+  <style>
+
+    .item-box-color1{
+      background-color: #faac25;
+      color: black;
+    }
+
+    .item-box-color2{
+      background-color: #5f2f9e;
+      color: white;
+    }
+
+    .item-box-color3{
+      background-color: #09a176;
+      color: white;
+    }
+
+    .panel-default > .panel-heading-custom1{
+      background-image: none;
+      background-color: #faac25;
+      /*background-color: #cf5b95;*/
+      color: #000000;
+    }
+    .panel-default > .panel-heading-custom2{
+      background-image: none;
+      background-color: #5f2f9e;
+      /*background-color: #ed6b71;*/
+      color: #ffffff;
+    }
+    .panel-default > .panel-heading-custom3{
+      background-image: none;
+      background-color: #09a176;
+      /*background-color: #f07c4a;*/
+      color: #ffffff;
+    }
+
+
+  </style>
+
+  <!-- Headline  -->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading panel-heading-custom">
+          <h3 class="panel-title" > {{ schedule_object.name }} - ( ID: {{ schedule_object.id }} )</h3>
+        </div>
+        <div class="panel-body">
+          <p> ID (#): {{ schedule_object.id }} </p>
+          <p> Name: {{ schedule_object.name }} </p>
+          <p> Info: {{ schedule_object.info }} </p>
+          <p> Creator: {{ schedule_object.created_user }} </p>
+          <p> Creation date: {{ schedule_object.creation_date }} </p>
+          <p> System: {{ schedule_object.system }} </p>
+        </div>
+        <div class="panel-footer">
+          <p><a href="#measurement_obj"> Measurement Objects </a></p>
+          <p><a href="#certification_obj"> Certification Objects </a></p>
+          <p><a href="#material_obj"> Material Objects </a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h3> Schedule Overview </h3>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.19.1/vis.min.css"  rel="stylesheet" type="text/css" />
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="visualization"></div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+
+
+    // Create a DataSet (allows two way data-binding)
+
+    //var groups = [{id: 0, content:"measurement"},
+    //              {id: 1, content:"material"},
+    //              {id: 2, content:"certification"}]
+
+    var groups = {{groups_items|safe}}
+
+    var n = {{schedule_items|safe}};
+    var itmes = new vis.DataSet(n);
+
+
+
+
+
+
+    // DOM element where the Timeline will be attached
+    var container = document.getElementById('visualization');
+    // Configuration for the Timeline
+    var options = {
+      groupOrder: 'id'  // groupOrder can be a property name or a sorting function
+    };
+
+    // Create a Timeline
+    var timeline = new vis.Timeline(container);
+    timeline.setOptions(options);
+    timeline.setGroups(groups);
+    timeline.setItems(itmes);
+  </script>
+
+  <!-- Headline : Material Objects  -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 id="measurement_obj"> Measurement Objects </h3>
+    </div>
+  </div>
+  <!-- Objects : Material Objects  -->
+  <div class="row">
+    {% for item in schedule_measurement_list %}
+      <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-custom1">
+            <h3 class="panel-title" > {{ item.name }}</h3>
+          </div>
+          <div class="panel-body">
+            <p> ID (#):  {{item.id}}                          </p>
+            <p> Name: {{item.name}}                           </p>
+            <p> Info:  {{item.info}}                          </p>
+            <p> Creator:  {{item.created_user}}               </p>
+            <p> Creation date: <br> {{item.creation_date}}    </p>
+            <p> Delivery date: <br> {{item.delivery_date}}    </p>
+            <p> Finish date: <br> {{item.estimated_end_date}} </p>
+            <p> Measurement Type:  {{item.measurement_type}}  </p>
+
+            <a href="{% url 'schedule:update_schedule_item_measurement' item.id %}"><span class="glyphicon glyphicon-open"></span>
+              Update</a>
+            <a href="{% url 'schedule:delete_schedule_item_measurement' item.id %}"><span class="glyphicon glyphicon-remove"></span>
+            Delete</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Headline : Material Objects  -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 id="certification_obj"> Certification Objects </h3>
+    </div>
+  </div>
+  <!-- Objects : Material Objects  -->
+  <div class="row">
+    {% for item in schedule_certification_list %}
+      <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-custom2">
+            <h3 class="panel-title" > {{ item.name }}</h3>
+          </div>
+          <div class="panel-body">
+            <p> ID (#):  {{item.id}}                            </p>
+            <p> Name: {{item.name}}                             </p>
+            <p> Info:  {{item.info}}                            </p>
+            <p> Creator:  {{item.created_user}}                 </p>
+            <p> Creation date:  {{item.creation_date}}          </p>
+            <p> Delivery date:  {{item.delivery_date}}          </p>
+            <p> Finish date:  {{item.estimated_end_date}}       </p>
+            <p> Certification Type:  {{item.certificatio_type}} </p>
+
+            <a href="{% url 'schedule:update_schedule_item_certification' item.id %}"><span class="glyphicon glyphicon-open"></span>
+              Update</a>
+            <a href="{% url 'schedule:delete_schedule_item_certification' item.id %}"><span class="glyphicon glyphicon-remove"></span>
+            Delete</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+
+  <!-- Headline : Material Objects  -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 id="material_obj"> Material Objects </h3>
+    </div>
+  </div>
+  <!-- Objects : Material Objects  -->
+  <div class="row">
+    {% for item in schedule_material_list %}
+      <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading panel-heading-custom3">
+            <h3 class="panel-title" > {{ item.name }}</h3>
+          </div>
+          <div class="panel-body">
+            <p> ID (#):  {{item.id}}                    </p>
+            <p> Name: {{item.name}}                     </p>
+            <p> Info:  {{item.info}}                    </p>
+            <p> Creator:  {{item.created_user}}         </p>
+            <p> Creation date:  {{item.creation_date}}  </p>
+            <p> Delivery date:  {{item.delivery_date}}  </p>
+
+            <a href="{% url 'schedule:update_schedule_item_material' item.id %}"><span class="glyphicon glyphicon-open"></span>
+              Update</a>
+            <a href="{% url 'schedule:delete_schedule_item_material' item.id %}"><span class="glyphicon glyphicon-remove"></span>
+            Delete</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

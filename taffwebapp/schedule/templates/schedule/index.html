@@ -1,0 +1,45 @@
+{% extends 'schedule/base_schedule.html' %}
+
+{% block schedule_body %}
+
+  <style>
+    .frame-item{
+      padding: 2px;
+      margin: 2px;
+      border-style: solid;
+      border-width: 1px;
+      border-color: #c5c5c5;
+      background: rgb(247, 247, 247);
+    }
+  </style>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1> Das ist die schedule index </h1>
+    </div>
+  </div>
+
+  <div class="row">
+  {% for item in schedule_list %}
+      <div class="col-lg-4">
+        <div class="frame-item">
+          <p> ID: {{ item.id }} </p>
+          <p> Name: </p>
+          <h4> {{ item.name }} </h4>
+          <p> Info: {{ item.info }} </p>
+          <p> Creator: {{ item.created_user }} </p>
+          <p> Creationdate: {{ item.creation_date }} </p>
+          <p> System: {{ item.system }} </p>
+
+          <p><a href="{% url 'schedule:view_a_Schedule' item.id %}"><span class="glyphicon glyphicon-eye-open"></span>
+             View this Schedule </a></p>
+          <a href="{% url 'schedule:update_schedule' item.id %}"><span class="glyphicon glyphicon-open"></span>
+            Update</a>
+          <a href="{% url 'schedule:delete_schedule' item.id %}"><span class="glyphicon glyphicon-remove"></span>
+            Delete</a>
+        </div>
+      </div>
+  {% endfor %}
+  </div>
+
+{% endblock %}

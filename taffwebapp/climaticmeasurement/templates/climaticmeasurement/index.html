@@ -1,0 +1,10 @@
+{% extends 'climaticmeasurement/base_climaticmeasurement.html' %}
+
+{% block climaticmeasurement_body %}
+
+<h1>Overview: Climaticmeasurements</h1>
+
+
+<a href="{% url 'climaticmeasurement:create_cm_bymcps' %}">From MCPS File</a>
+
+{% endblock %}

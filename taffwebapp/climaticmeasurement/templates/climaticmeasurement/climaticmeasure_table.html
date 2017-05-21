@@ -1,0 +1,45 @@
+
+{% extends 'climaticmeasurement/base_climaticmeasurement.html' %}
+
+{% block climaticmeasurement_body %}
+
+
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Max</th>
+            <th>Value</th>
+            <th>Diff</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for item in obj.table_rows  %}
+
+            {% if item.diff <= 0 %}
+              <tr class="warning">
+            {% endif %}
+            {% if item.diff > 0 %}
+              <tr class="success">
+            {% endif %}
+                <td>{{ item.name }}</td>
+                <td>{{ item.valuemax }}</td>
+                <td>{{ item.value }}</td>
+                <td>{{ item.diff }}</td>
+              </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+
+
+{% endblock %}

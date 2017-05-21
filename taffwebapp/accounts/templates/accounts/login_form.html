@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h1 class="panel-title"> {{ titel }} </h1>
+        </div>
+        <div class="panel-body">
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <!-- ein kleines script um die datetime picker zu initialisieren -->
+
+                <div class="form-group">
+                  <div class="col-lg-offset-3 col-lg-1">
+                    <label class="control-label">{{ field.label_tag }}</label>
+                  </div>
+                  <div class="col-lg-3">{{ field}}</div>
+                  <div class="col-lg-5">
+                    <span class="text-danger small">{{ field.errors }}</span>
+                  </div>
+                </div>
+
+            {% endfor %}
+
+            <div class="form-group">
+              <div class="col-lg-offset-6 col-lg-6">
+                <button type="submit" class="btn btn-success">Log in</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="panel-footer">
+          <p><a href="{% url 'accounts:about' %}"> About </a></p>
+          <p><a href="{% url 'accounts:register' %}"> Create a new account </a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

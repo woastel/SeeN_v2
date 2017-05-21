@@ -1,0 +1,77 @@
+{% extends 'components/base_components.html' %}
+
+{% block components_body %}
+
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'components/style.css' %}" />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="page-header">
+      <h1>Example page header <small>Subtext for header</small></h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading panel-heading-custom1">
+        <h3 class="panel-title" > Component Types</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Components</td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for a in componentTypeCountDict %}
+              <tr>
+                <td>
+                  {{a.name}}
+                </td>
+                <td>
+                  {{a.count}}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="panel panel-default item-box-color1">
+      <div class="panel-heading panel-heading-custom1">
+        <h3 class="panel-title" > Informations about Components </h3>
+      </div>
+      <div class="panel-body">
+        <p><b> Components count: </b> {{component_anzahl}} </p>
+        <p><b> Last added component: </b>
+          <a href="{% url 'components:component_detail' component_last_added.component_id %}">
+            {{component_last_added.name}} - {{component_last_added.component_type_text}}
+          </a>
+        </p>
+        <p><b> Last updated component: </b>
+          <a href="{% url 'components:component_detail' component_last_updated.component_id %}">
+            {{component_last_updated.name}} - {{component_last_updated.component_type_text}}
+          </a>
+        </p>
+        <p><b> Components with Open Verifications: </b> -- noch offen --  </p>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
