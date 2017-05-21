@@ -44,6 +44,7 @@ class MainView(View):
             component_last_updated = Component.objects.all().order_by('-date_update')[0]
             context["component_last_updated"] = component_last_updated
         except:
+            context["component_last_updated"] = False
             print("Error: Keine Componenten vorhanden")
 
         # get the last component object - ( is the object with the max id)
@@ -51,6 +52,7 @@ class MainView(View):
             component_last_added = Component.objects.all().order_by("-component_id")[0]
             context["component_last_added"] = component_last_added
         except:
+            context["component_last_added"] = False
             print("Error: Keine Componenten vorhanden")
 
 

@@ -55,15 +55,26 @@
       <div class="panel-body">
         <p><b> Components count: </b> {{component_anzahl}} </p>
         <p><b> Last added component: </b>
-          <a href="{% url 'components:component_detail' component_last_added.component_id %}">
-            {{component_last_added.name}} - {{component_last_added.component_type_text}}
-          </a>
+          {% if component_last_added != False %}
+            <a href="{% url 'components:component_detail' component_last_added.component_id %}">
+              {{component_last_added.name}} - {{component_last_added.component_type_text}}
+            </a>
+          {% else %}
+            no component avalible
+          {% endif %}
+
         </p>
+
         <p><b> Last updated component: </b>
-          <a href="{% url 'components:component_detail' component_last_updated.component_id %}">
-            {{component_last_updated.name}} - {{component_last_updated.component_type_text}}
-          </a>
+          {% if component_last_updated != False %}
+            <a href="{% url 'components:component_detail' component_last_updated.component_id %}">
+              {{component_last_updated.name}} - {{component_last_updated.component_type_text}}
+            </a>
+          {% else %}
+            no component avalible
+          {% endif %}
         </p>
+
         <p><b> Components with Open Verifications: </b> -- noch offen --  </p>
 
 
