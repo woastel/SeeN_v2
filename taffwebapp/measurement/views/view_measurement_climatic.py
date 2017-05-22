@@ -10,6 +10,7 @@ from measurement.forms import form_measurement_climatic
 from measurement.readMcpsFile import readMcpsStatisticFile
 from measurement.cm_table_generator import cm_table_list_generator
 from measurement.models.measurement_climatic import (
+        climatic_SensorTypeList,
         climatic_SensorMax,
         climatic_SensorName,
         climatic_SensorValue,
@@ -192,6 +193,9 @@ class CreateCM_byMCPS(View):
         }
 
         form = self.form_class(initial=initial)
+
+        # change here the sensortype list queryset because here we have accses to the user
+        form.fields["sensorTypeList"].queryset  = climatic_SensorTypeList.objects.filter(user_creation=request.user)
 
         context = {'form': form}
         context["panel_titel"] = self.panel_titel

@@ -86,7 +86,7 @@ class Form_Create_SensorTypeList(forms.ModelForm):
         fields = '__all__'
 
 class UploadFileForm(forms.ModelForm):
-    sensorTypeList  = forms.ModelChoiceField(queryset=Component.objects.filter(character_thermal_avalible=True).order_by("component_type_text"), empty_label="(Nothing)", required=False)
+    # sensorTypeList  = forms.ModelChoiceField(queryset=climatic_SensorTypeList.objects.filter(character_thermal_avalible=True).order_by("component_type_text"), empty_label="(Nothing)", required=False)
     _file = forms.FileField()
 
     class Meta:
@@ -101,11 +101,13 @@ class UploadFileForm(forms.ModelForm):
 
             "eut",
             "measurement_is_pass",
-
+            "measurement_is_public",
+            
             "AmbientTemp",
             "TestLoad",
             "sensortypeList_avalible",
             "sensorTypeList",
+
         ]
 
         widgets = {

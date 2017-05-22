@@ -26,6 +26,8 @@
         <th>Test Load</th>
         <th>Sensor Type List ?</th>
         <th>Sensor Type List</th>
+        <th>Public</th>
+        <th>User Creation</th>
       </tr>
     </thead>
     <tbody>
@@ -40,6 +42,8 @@
           <th>{{ item.TestLoad }}</th>
           <th>{{ item.sensortypeList_avalible }}</th>
           <th>{{ item.sensorTypeList }}</th>
+          <th>{{ item.measurement_is_public }}</th>
+          <th>{{ item.user_creation }}</th>
         </tr>
       {% endfor %}
     </tbody>

@@ -42,7 +42,7 @@
         <p>Creation date: {{ eut.date_creation }} </p>
         <p>Updated: {{ eut.date_updateed }} </p>
         <p>System: {{ eut.system.name }} </p>
-        <p>EUT is connectet to measurement: {{ eut.is_connected_to_climaticmeasurement }} </p>
+        <p>EUT is locked: {{ eut.locked }} </p>
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
 
-        {% if eut.is_connected_to_climaticmeasurement == False %}
+        {% if eut.locked == False %}
 
           <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -112,7 +112,7 @@
                     <td><a href="{% url 'components:component_detail' item.component.component_id %}">
                         {{ item.component.name }}</a></td>
 
-                    {% if eut.is_connected_to_climaticmeasurement == False %}
+                    {% if eut.locked == False %}
                       <td><a href="{% url 'eut:eut_delete_component_to_eut_connection' item.id %}">
                           Remove</a></td>
                     {% else %}

@@ -25,7 +25,7 @@ class Eut(models.Model):
 
     # Wenn dieses Feld True ist duerfen die componenten des systems nicht mehr
     #  geaendert werden.
-    is_connected_to_climaticmeasurement = models.BooleanField(default=False)
+    locked = models.BooleanField(default=False)
 
     # das System zudem der EUT gehoert
     system = models.ForeignKey(System_System, on_delete=models.PROTECT)

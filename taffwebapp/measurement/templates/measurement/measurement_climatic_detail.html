@@ -21,7 +21,7 @@
 
 <!-- Component Detail Box -->
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-9">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"> {{panel_titel}} </h3>
@@ -36,11 +36,13 @@
           <p>Measurement is PASS?:  {{climatic_measurement.measurement_is_pass}}</p>
           <p>Measurement Type:      {{climatic_measurement.measurement_type }}</p>
           <hr>
+          <p>Measurement Pbulic: {{climatic_measurement.measurement_is_public}}</p>
+          <hr>
           <p>Sensor Type List avalible: {{climatic_measurement.sensortypeList_avalible}}</p>
           <p>Sensor Type List : {{climatic_measurement.sensorTypeList.name}} - {{climatic_measurement.sensorTypeList.user_creation}} </p>
           <hr>
           <p>Information:</p>
-          <textarea name="Text1" cols="40" rows="5">{{climatic_measurement.information}}</textarea>
+          <textarea name="Text1" cols="80" rows="10">{{climatic_measurement.information}}</textarea>
           <hr>
           <p>Creation: {{climatic_measurement.date_creation}} - {{climatic_measurement.user_creation}}</p>
           <p>Update:   {{climatic_measurement.date_update}} - {{climatic_measurement.user_update}}</p>
@@ -48,7 +50,23 @@
       </div>
     </div>
   </div>
+
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> Options </h3>
+      </div>
+      <div class="panel-body">
+        <p>Change <a href="#">Result</a></p>
+        <p>Change <a href="#">Publication</a></p>
+        <p>Change <a href="#">Information</a></p>
+        <hr>
+        <p>Update <a href="#">Measurement</a></p>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 
 <!-- Climatic Measurement Table -->

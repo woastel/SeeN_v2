@@ -31,3 +31,17 @@ class measurement(models.Model):
     # Measurement Type (as text info)
     #  this field will be set by the save methode
     measurement_type = models.CharField(max_length=100)
+
+    measurement_is_public = models.BooleanField(default=False)
+
+
+    def save(self, *args, **kwargs):
+        print(self.eut.locked)
+        eut_list = Eut.objects.filter(id=self.eut.id)
+        eut = eut_list[0]
+        eut.locked = True
+        eut.save()
+
+        print(self.eut.locked)
+
+        super(measurement, self).save(*args, **kwargs)
