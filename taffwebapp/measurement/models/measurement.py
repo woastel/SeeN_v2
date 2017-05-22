@@ -32,7 +32,7 @@ class measurement(models.Model):
     #  this field will be set by the save methode
     measurement_type = models.CharField(max_length=100)
 
-    measurement_is_public = models.BooleanField(default=False)
+    public = models.BooleanField(default=False)
 
 
     def save(self, *args, **kwargs):
@@ -45,3 +45,8 @@ class measurement(models.Model):
         print(self.eut.locked)
 
         super(measurement, self).save(*args, **kwargs)
+
+
+    #def __str__(self):
+
+    #    print(str(self.name) + " " + str(self.measurement_id))

@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 from django.core.urlresolvers import reverse
 from . import forms
 from django.core.urlresolvers import reverse_lazy
@@ -23,6 +24,8 @@ from .models import (
         Pcba,
         Pcie_Ctrl)
 
+from eut.models import Component_connection
+from measurement.models import measurement
 
 #
 # Main View
@@ -99,6 +102,10 @@ class Detail_Component_View(View):
         # get the component - but select the subclasses
         var_component = Component.objects.filter(component_id=var_component_id).select_subclasses()
 
+        print(var_component[0])
+
+
+
         # put the component into the dictonary
         # check if the querysert has a object
         if len(var_component) != 0:
@@ -106,6 +113,24 @@ class Detail_Component_View(View):
             context['alert_success_avalible'] = True
             context['alert_success'] = str(
                 'Pass - Component with id({}) is avalible.'.format(var_component_id))
+
+
+
+            component_conni = Component_connection.objects.filter(component=var_component[0])
+            print(component_conni)
+            climatic_measurements_with_comp = []
+
+            for i in component_conni:
+                queriset = (measurement.objects.filter(
+                    Q(eut=i.eut, measurement_type="Climatic", public=True) |
+                    Q(eut=i.eut, measurement_type="Climatic", user_creation=request.user)))
+
+                for x in queriset:
+                    climatic_measurements_with_comp.append(x)
+
+            print(climatic_measurements_with_comp)
+            context["climatic_measurements_with_comp"] = climatic_measurements_with_comp
+
         else:
             context['alert_danger_avalible'] = True
             context['alert_danger'] = str(

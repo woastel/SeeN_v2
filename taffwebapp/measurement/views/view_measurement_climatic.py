@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from datetime import datetime
+from django.db.models import Q
 from measurement.forms import form_measurement_climatic
 from measurement.readMcpsFile import readMcpsStatisticFile
 from measurement.cm_table_generator import cm_table_list_generator
@@ -16,6 +17,8 @@ from measurement.models.measurement_climatic import (
         climatic_SensorValue,
         climatic_MeasureValues,
         measurement_climatic)
+
+from eut.models import Eut
 
 
 
@@ -37,7 +40,9 @@ class ListOfClimaticMeasurements_View(View):
     def get(self, request, *args, **kwargs):
         context = {}
 
-        measurement_list = measurement_climatic.objects.all()
+        measurement_list = measurement_climatic.objects.filter(
+                Q(user_creation=request.user) | Q(public=True))
+
         context["measurement_list"] = measurement_list
 
         return render(request, self.template_name, context)
@@ -196,6 +201,7 @@ class CreateCM_byMCPS(View):
 
         # change here the sensortype list queryset because here we have accses to the user
         form.fields["sensorTypeList"].queryset  = climatic_SensorTypeList.objects.filter(user_creation=request.user)
+        form.fields["eut"].queryset  = Eut.objects.filter(user_creator=request.user)
 
         context = {'form': form}
         context["panel_titel"] = self.panel_titel

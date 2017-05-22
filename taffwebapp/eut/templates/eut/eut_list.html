@@ -4,20 +4,54 @@
 
 
 {% load static %}
-
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'components/style.css' %}" />
 
 <div class="row">
   <div class="col-lg-12">
 
-    {% for eut in eutlist %}
+    <script>
+        var table = $(document).ready(function(){
+            $('#das_ist_table').DataTable();
+        });
+    </script>
 
-      <a href="{% url 'eut:eut_detail' eut.id %}"><p> {{ eut }} </p></a>
-
-    {% endfor %}
-
+    <div class="table-responsive">
+      <table id="das_ist_table" class="table table-bordered">
+        <thead>
+          <tr class="warning">
+            <td>ID</td>
+            <td>Name</td>
+            <td>Creator</td>
+            <td>Date Creation</td>
+            <td>Locked</td>
+            <td>System</td>
+            <td>public</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in eutlist %}
+            <tr>
+              <td>{{ item.id }}</td>
+              <td><a href="{% url 'eut:eut_detail' item.id %}"> {{ item.name }} </a></td>
+              <td>{{ item.user_creator }}</td>
+              <td>{{ item.date_creation }}</td>
+              <td>{{ item.locked }}</td>
+              <td>{{ item.system }}</td>
+              <td>{{ item.public }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
+
+
+
+
+
 
 
 

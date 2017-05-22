@@ -30,6 +30,7 @@ class Eut(models.Model):
     # das System zudem der EUT gehoert
     system = models.ForeignKey(System_System, on_delete=models.PROTECT)
 
+    public = models.BooleanField(default=False)
 
     def __str__(self):
         return( str(self.id) + "-" +

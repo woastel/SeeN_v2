@@ -101,8 +101,8 @@ class UploadFileForm(forms.ModelForm):
 
             "eut",
             "measurement_is_pass",
-            "measurement_is_public",
-            
+            "public",
+
             "AmbientTemp",
             "TestLoad",
             "sensortypeList_avalible",
