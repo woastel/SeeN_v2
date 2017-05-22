@@ -36,6 +36,8 @@
           <p>Measurement is PASS?:  {{climatic_measurement.measurement_is_pass}}</p>
           <p>Measurement Type:      {{climatic_measurement.measurement_type }}</p>
           <hr>
+          <p>EUT: <a href="{% url 'eut:eut_detail' climatic_measurement.eut.id %}"> --> Link:  {{climatic_measurement.eut.name}}</a></p>
+          <hr>
           <p>Measurement Pbulic: {{climatic_measurement.public}}</p>
           <hr>
           <p>Sensor Type List avalible: {{climatic_measurement.sensortypeList_avalible}}</p>
