@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^complist/$',                  views.List_Component_View.as_view() , name='component_list'),
     url(r'^comp/(?P<pk>[0-9]+)/$',       views.Detail_Component_View.as_view(), name='component_detail'),
 
+    url(r'^systemcomponent_connection_overview/$',                  views.System_Component_Connection_Overview.as_view() , name='system_component_connection_overview'),
+
     # Create types (only used by admin )
     #url(r'^comp/componentType/add/$',   views.Create_Component_Type_View.as_view() ,       name='create_componentType'),
     url(r'^comp/Vendor/add/$',          views.Create_Vendor_View.as_view() ,  name='create_vendor'),
