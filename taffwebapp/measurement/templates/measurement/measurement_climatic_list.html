@@ -1,0 +1,50 @@
+{% extends 'measurement/__base_measurement_climatic.html' %}
+
+{% block measurement_climatic_body %}
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+<h1> Component List View html </h1>
+
+<script>
+  var table = $(document).ready(function(){
+      $('#list_climatic_measurements').DataTable();
+  });
+</script>
+
+<div class="table-responsive">
+  <table id="list_climatic_measurements" class="table table-bordered">
+    <thead>
+      <tr class="warning">
+        <td>ID</td>
+        <td>Name</a></td>
+        <td>Type</td>
+        <td>EUT</td>
+        <td>IS PASS ?</td>
+        <th>Ambient Temp</th>
+        <th>Test Load</th>
+        <th>Sensor Type List ?</th>
+        <th>Sensor Type List</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in measurement_list %}
+        <tr>
+          <td>{{ item.measurement_id }}</td>
+          <td><a href="{% url 'measurement:mc_detail_view' item.measurement_id %}">{{ item.name }}</a></td>
+          <td>{{ item.measurement_type }}</td>
+          <td>{{ item.eut.name }}</td>
+          <th>{{ item.measurement_is_pass }}</th>
+          <th>{{ item.AmbientTemp }}</th>
+          <th>{{ item.TestLoad }}</th>
+          <th>{{ item.sensortypeList_avalible }}</th>
+          <th>{{ item.sensorTypeList }}</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}

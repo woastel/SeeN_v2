@@ -13,29 +13,168 @@ from measurement.models.measurement_climatic import (
         climatic_SensorMax,
         climatic_SensorName,
         climatic_SensorValue,
-        climatic_MeasureValues, )
+        climatic_MeasureValues,
+        measurement_climatic)
+
+
 
 @method_decorator(login_required, name='dispatch')
 class IndexView(View):
-    template_name = 'measurement/index_measurement_climatic.html'
+    template_name = 'measurement/measurement_climatic_index.html'
 
     def get(self, request, *args, **kwargs):
 
         context = {}
 
         return render(request, self.template_name, context)
+
 
 @method_decorator(login_required, name='dispatch')
 class ListOfClimaticMeasurements_View(View):
-    template_name = ""
+    template_name = "measurement\measurement_climatic_list.html"
 
     def get(self, request, *args, **kwargs):
         context = {}
 
-        measurement_list = Climaticmeasure.objects.all()
+        measurement_list = measurement_climatic.objects.all()
         context["measurement_list"] = measurement_list
 
         return render(request, self.template_name, context)
+
+
+class DetailClimaticMeasurement_View(View):
+    templateName = 'measurement/measurement_climatic_detail.html'
+    panel_titel = "Measurement Detail View"
+
+    def get(self, request, *args, **kwargs):
+        # context dictonary - render context
+        print(kwargs)
+        context = {}
+        context['alert_success_avalible'] = False
+        context['alert_danger_avalible'] = False
+        # component id
+        var_climaticmeasurement_id = kwargs["pk"]
+        # get the component - but select the subclasses
+        var_climaticmeasurement_list = measurement_climatic.objects.filter(measurement_ptr_id=var_climaticmeasurement_id)
+
+        print(var_climaticmeasurement_list)
+
+        # put the component into the dictonary
+        # check if the querysert has a object
+        if len(var_climaticmeasurement_list) != 0:
+            context['climatic_measurement'] = var_climaticmeasurement_list[0]
+
+            obj = cm_table_list_generator(context['climatic_measurement'])
+            print(type(obj))
+            context["obj"] = obj
+            for i in obj.table_rows:
+                print(i.name)
+
+
+            context['alert_success_avalible'] = True
+            context['alert_success'] = str(
+                'Pass - Measurement with id({}) is avalible.'.format(var_climaticmeasurement_id))
+        else:
+            context['alert_danger_avalible'] = True
+            context['alert_danger'] = str(
+                'Error - Component with id({}) isnt avalible.'.format(var_climaticmeasurement_id))
+
+
+        # add the panel titel to the context
+        context.update({'panel_titel': self.panel_titel})
+        # now return the render object with template name and context
+        return render(request, self.templateName, context)
+
+@method_decorator(login_required, name='dispatch')
+class Create_AmbientTemperature(View):
+    form_class = form_measurement_climatic.Form_Create_AmbientTemperature
+    template_name = 'measurement/formular.html'
+    panel_titel = 'Add a Ambient Temperature'
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        initial = {}
+
+        form = self.form_class(initial=initial)
+
+        context = {'form': form}
+        context["panel_titel"] = self.panel_titel
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('measurement:mc_index'))
+
+        context = {'form': form}
+        context.update(self.panel_titel)
+        return render(request, self.template_name, context)
+
+@method_decorator(login_required, name='dispatch')
+class Create_TestLoad(View):
+    form_class = form_measurement_climatic.Form_Create_TestLoad
+    template_name = 'measurement/formular.html'
+    panel_titel = 'Add a Test Load'
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        initial = {}
+
+        form = self.form_class(initial=initial)
+
+        context = {'form': form}
+        context["panel_titel"] = self.panel_titel
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('measurement:mc_index'))
+
+        context = {'form': form}
+        context.update(self.panel_titel)
+        return render(request, self.template_name, context)
+
+@method_decorator(login_required, name='dispatch')
+class Create_SensorTypeList(View):
+    form_class = form_measurement_climatic.Form_Create_SensorTypeList
+    template_name = 'measurement/formular.html'
+    panel_titel = 'Add a Sensor Type List'
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        initial = {}
+
+        form = self.form_class(initial=initial)
+
+        context = {'form': form}
+        context["panel_titel"] = self.panel_titel
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
+
+        if form.is_valid():
+
+            instance = form.save(commit=False)
+            instance.save()
+
+            return HttpResponseRedirect(reverse('measurement:mc_index'))
+
+        context = {'form': form}
+        context.update(self.panel_titel)
+        return render(request, self.template_name, context)
+
 
 @method_decorator(login_required, name='dispatch')
 class CreateCM_byMCPS(View):

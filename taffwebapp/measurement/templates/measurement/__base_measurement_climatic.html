@@ -24,9 +24,18 @@
         <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
           <button type="button" class="btn btn-default" onclick="location.href = '{% url 'measurement:mc_create_bymcps' %}';">
             Create by mcps</button>
-          <button type="button" class="btn btn-default" onclick="location.href = '#';">
+          <button type="button" class="btn btn-default" onclick="location.href = '{% url 'measurement:mc_list' %}';">
             View all</button>
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>Admin Setting</h3>
+        <p>Add <a href="{% url 'measurement:mc_add_AmbientTemperature' %}">Ambient Temp</a></p>
+        <p>Add <a href="{% url 'measurement:mc_add_TestLoad' %}">Test Load</a></p>
+        <p>Add <a href="{% url 'measurement:mc_add_SensorTypeList' %}">Sensor Type List</a></p>
       </div>
     </div>
   </div>

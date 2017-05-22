@@ -2,7 +2,6 @@ from django.contrib import admin
 
 from measurement.models.measurement import measurement
 from measurement.models.measurement_climatic import (
-        climatic_SensorType,
         climatic_SensorTypeList,
         climatic_SensorMax,
         climatic_SensorValue,
@@ -18,7 +17,6 @@ from measurement.models.measurement_climatic import (
 
 
 admin.site.register(measurement)
-admin.site.register(climatic_SensorType)
 admin.site.register(climatic_SensorTypeList)
 admin.site.register(climatic_SensorMax)
 admin.site.register(climatic_SensorValue)
