@@ -27,7 +27,7 @@
 
 <!-- Component Detail Box -->
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-9">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Component: [ {{ component.name }} ] ({{component.component_id}})</h3>
@@ -347,7 +347,182 @@
       </div>
     </div>
   </div>
+
+
+
+
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Optionss</h3>
+      </div>
+      <div class="panel-body">
+        <p><a href="#Measurements">Measurements</a></p>
+        <!-- Update and Delete Button -->
+        <div class="col-lg-12">
+
+          {% if component.component_type_text == "Chassis" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_chassis' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "Chassis Add On" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_chassisAddOn' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "Motherboard" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_motherboard' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "CPU" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_cpu' component.component_id %}';">
+              Update
+            </button>
+
+
+          {% endif %}
+
+          {% if component.component_type_text == "Memory" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_memory' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "PSU" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:delete_psu' component.component_id %}';">
+              Delete
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "HDD" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_hdd' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "Heat Sink" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_heatsink' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "Fan" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_fan' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "Cable" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_cable' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "PCBA" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_pcba' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+          {% if component.component_type_text == "PCIe Controller" %}
+
+            <button type="button" class="btn btn-default" onclick="location.href = '{% url 'components:update_pciectrl' component.component_id %}';">
+              Update
+            </button>
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- Lists of measurements with a eut that include this components-->
+<div class="row" id="Measurements">
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Climatic Measurements</h3>
+      </div>
+      <div class="panel-body">
+
+        {% for item in climatic_measurements_with_comp %}
+
+          <p><a href="{% url 'measurement:mc_detail_view' item.measurement_id %}">{{item.measurement_id}} -- {{item.name}}</a></p>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strike> EMI Measurements </strike></h3>
+      </div>
+      <div class="panel-body">
+
+        <p>Comming asap</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strike> AirFlow Measurements</strike></h3>
+      </div>
+      <div class="panel-body">
+
+        <p>Comming asap</p>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strike> ChassisCharacter Measurements</strike></h3>
+      </div>
+      <div class="panel-body">
+
+        <p>Comming asap</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

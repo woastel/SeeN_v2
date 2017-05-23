@@ -94,6 +94,43 @@ class Detail_System_View(View):
                 System_Component_connection.objects.filter(
                     system=var_system).order_by('component__component_id'))
 
+
+
+
+            anzahl_system_comp_Chassis =        len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Chassis"))
+
+
+            anzahl_system_comp_ChassisAddOn =   len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Chassis Add On"))
+            anzahl_system_comp_Motherboard =    len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Motherboard"))
+            anzahl_system_comp_Cpu =            len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="CPU"))
+
+            anzahl_system_comp_Memory  =        len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Memory"))
+            anzahl_system_comp_PSU =            len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="PSU"))
+            anzahl_system_comp_HDD =            len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="HDD"))
+            print("HDD")
+            print(anzahl_system_comp_HDD)
+            anzahl_system_comp_HeatSink =       len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Heat Sink"))
+            anzahl_system_comp_Fan =            len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Fan"))
+            anzahl_system_comp_Cable =          len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="Cable"))
+            anzahl_system_comp_PCBA =           len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="PCBA"))
+            anzahl_system_comp_PCIe =           len(System_Component_connection.objects.filter(system=var_system, component__component_type_text="PCIe Controller"))
+
+            context["anzahl_system_comp_Chassis"]       = anzahl_system_comp_Chassis
+            context["anzahl_system_comp_ChassisAddOn"]  = anzahl_system_comp_ChassisAddOn
+            context["anzahl_system_comp_Motherboard"]   = anzahl_system_comp_Motherboard
+            context["anzahl_system_comp_Cpu"]           = anzahl_system_comp_Cpu
+            context["anzahl_system_comp_Memory"]        = anzahl_system_comp_Memory
+            context["anzahl_system_comp_PSU"]           = anzahl_system_comp_PSU
+            context["anzahl_system_comp_HDD"]           = anzahl_system_comp_HDD
+            context["anzahl_system_comp_HeatSink"]      = anzahl_system_comp_HeatSink
+            context["anzahl_system_comp_Fan"]           = anzahl_system_comp_Fan
+            context["anzahl_system_comp_Cable"]         = anzahl_system_comp_Cable
+            context["anzahl_system_comp_PCBA"]          = anzahl_system_comp_PCBA
+            context["anzahl_system_comp_PCIe"]          = anzahl_system_comp_PCIe
+
+
+
+
             context['system_component_connection_list'] = (
                 system_component_connection_list)
 

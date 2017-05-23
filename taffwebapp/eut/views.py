@@ -60,7 +60,7 @@ class Eut_list_view(View):
     def get(self, request, *args, **kwargs):
         context = {}
 
-        eutlist = Eut.objects.all()
+        eutlist = Eut.objects.filter(user_creator=request.user)
         context["eutlist"] = reversed(eutlist)
 
         return render(request, self.template_name, context)

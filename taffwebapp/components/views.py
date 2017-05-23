@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.db.models import Q
 from django.core.urlresolvers import reverse
 from . import forms
 from django.core.urlresolvers import reverse_lazy
@@ -23,6 +24,9 @@ from .models import (
         Pcba,
         Pcie_Ctrl)
 
+from eut.models import Component_connection
+from measurement.models import measurement
+from system.models import System_Component_connection
 
 #
 # Main View
@@ -39,11 +43,110 @@ class MainView(View):
         component_anzahl = len(Component.objects.all())
         context["component_anzahl"] = component_anzahl
 
+
+        listea = [
+                    ['id', 'childLabel', 'parent', 'size', { "role": 'style' }],
+                    [0,     'Component',        -1, 1, 'black'],
+                    [1,     'Chassis',          0,  1, 'black'],
+                    [2,     'ChassisAddOn',     0,  1, 'black'],
+                    [3,     'Motherboard',      0,  1, 'black'],
+                    [4,     'Cpu',              0,  1, 'black'],
+                    [5,     'Memory',           0,  1, 'black'],
+                    [6,     'PSU',              0,  1, 'black'],
+                    [7,     'HDD',              0,  1, 'black'],
+                    [8,     'HeatSink',         0,  1, 'black'],
+                    [9,     'Fan',              0,  1, 'black'],
+                    [10,     'Cable',           0,  1, 'black'],
+                    [11,     'Pcba',            0,  1, 'black'],
+                    [12,     'Pcie Ctrl',       0,  1, 'black']
+                ]
+
+        counter = 13
+        component_list = Component.objects.all()
+        for i in component_list:
+            if i.component_type_text == "Chassis":
+                x = [counter, i.name, 1, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "Chassis Add On":
+                x = [counter, i.name, 2, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "Motherboard":
+                x = [counter, i.name, 3, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "CPU":
+                x = [counter, i.name, 4, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "Memory":
+                x = [counter, i.name, 5, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "PSU":
+                x = [counter, i.name, 6, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "HDD":
+                x = [counter, i.name, 7, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "Heat Sink":
+                x = [counter, i.name, 8, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "Fan":
+                x = [counter, i.name, 9, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "Cable":
+                x = [counter, i.name, 10, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "PCBA":
+                x = [counter, i.name, 11, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+            elif i.component_type_text == "PCIe Controller":
+                x = [counter, i.name, 12, 1, '#f49e09']
+                listea.append(x)
+                counter = counter + 1
+
+
+
+
+
+
+        #listea = [  ['Phrases'],
+        #            ['cats are better than dogs'],
+        #            ['cats eat kibble'],
+        #            ['cats are better than hamsters'],
+        #            ['cats are awesome'],
+        #            ['cats are people too'],
+        #            ['cats eat mice'],
+        #            ['cats meowing'],
+        #            ['cats in the cradle'],
+        #            ['cats eat mice'],
+        #            ['cats in the cradle lyrics'],
+        #            ['cats eat kibble'],
+        #            ['cats for adoption'],
+        #            ['cats are family'],
+        #            ['cats eat mice'],
+        #            ['cats are better than kittens'],
+        #            ['cats are evil'],
+        #            ['cats are weird'],
+        #            ['cats eat mice'],
+        #            ]
+
+        context["listea"] = listea
+
         # get the last updated component object
         try:
             component_last_updated = Component.objects.all().order_by('-date_update')[0]
             context["component_last_updated"] = component_last_updated
         except:
+            context["component_last_updated"] = False
             print("Error: Keine Componenten vorhanden")
 
         # get the last component object - ( is the object with the max id)
@@ -51,6 +154,7 @@ class MainView(View):
             component_last_added = Component.objects.all().order_by("-component_id")[0]
             context["component_last_added"] = component_last_added
         except:
+            context["component_last_added"] = False
             print("Error: Keine Componenten vorhanden")
 
 
@@ -97,6 +201,10 @@ class Detail_Component_View(View):
         # get the component - but select the subclasses
         var_component = Component.objects.filter(component_id=var_component_id).select_subclasses()
 
+        print(var_component[0])
+
+
+
         # put the component into the dictonary
         # check if the querysert has a object
         if len(var_component) != 0:
@@ -104,6 +212,24 @@ class Detail_Component_View(View):
             context['alert_success_avalible'] = True
             context['alert_success'] = str(
                 'Pass - Component with id({}) is avalible.'.format(var_component_id))
+
+
+
+            component_conni = Component_connection.objects.filter(component=var_component[0])
+            print(component_conni)
+            climatic_measurements_with_comp = []
+
+            for i in component_conni:
+                queriset = (measurement.objects.filter(
+                    Q(eut=i.eut, measurement_type="Climatic", public=True) |
+                    Q(eut=i.eut, measurement_type="Climatic", user_creation=request.user)))
+
+                for x in queriset:
+                    climatic_measurements_with_comp.append(x)
+
+            print(climatic_measurements_with_comp)
+            context["climatic_measurements_with_comp"] = climatic_measurements_with_comp
+
         else:
             context['alert_danger_avalible'] = True
             context['alert_danger'] = str(
@@ -116,6 +242,28 @@ class Detail_Component_View(View):
         return render(request, self.templateName, context)
 
 
+@method_decorator(login_required, name='dispatch')
+class System_Component_Connection_Overview(View):
+    templateName = 'components/system_component_connection_overview.html'
+    panel_titel = "Component Detail View"
+
+    def get(self, request, *args, **kwargs):
+        context = {}
+        # context dictonary - render context
+        listee = []
+        system_comp_conni_list = System_Component_connection.objects.all()
+        print(system_comp_conni_list)
+
+        for i in system_comp_conni_list:
+            x = [str(i.system.name), str(i.component.name), int(i.component_count)]
+            listee.append(x)
+
+        context["data"] = listee
+
+        # add the panel titel to the context
+        context.update({'panel_titel': self.panel_titel})
+        # now return the render object with template name and context
+        return render(request, self.templateName, context)
 
 
 #
@@ -204,6 +352,8 @@ class Create_Vendor_View(View):
         context = {'form': form}
         context.update(self.panel_titel)
         return render(request, self.template_name, context)
+
+
 
 
 # Chassis Views
@@ -382,11 +532,6 @@ class Delete_ChassisAddOn_View(generic.DeleteView):
     model = ChassisAddOn
     template_name = "components/component_delete_confirm.html"
     success_url = reverse_lazy("components:index")
-
-
-
-
-
 
 
 

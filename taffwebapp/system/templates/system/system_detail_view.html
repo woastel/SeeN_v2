@@ -98,6 +98,15 @@
   </div>
 </div>
 
+
+<link href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script>
+  var table = $(document).ready(function(){
+      $('#system_component_connection_table').DataTable();
+  });
+</script>
+
 <div class="row">
   <div class="col-lg-12">
     <div class="panel panel-default">
@@ -105,14 +114,15 @@
         <h3 class="panel-title">Components from the System</h3>
       </div>
       <div class="panel-body">
+
         <div class="table-responsive">
-          <table class="table table-bordered">
+          <table id="system_component_connection_table" class="table table-bordered">
             <thead>
               <tr class="warning">
-                <td>System</td>
-                <td>component_count</td>
-                <td>component</td>
-                <td>Delete</td>
+                <th>System</th>
+                <th>component_count</th>
+                <th>component</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -128,7 +138,98 @@
               {% endfor %}
             </tbody>
           </table>
+
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  google.charts.setOnLoadCallback(drawChart2);
+
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Task', 'Hours per Day'],
+      ['EMI',     11],
+      ['Climatic',      2],
+      ['Meachanic',  2],
+      ['AirFlow', 2],
+      ['Chassis Charakter',7]
+    ]);
+
+    var options = {
+      title: 'System Measurements'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart_systemmeasurements'));
+
+    chart.draw(data, options);
+  }
+
+  function drawChart2() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Component', 'number of Component'],
+      ['Chassis',     {{anzahl_system_comp_Chassis}} ],
+      ['CPU',         {{anzahl_system_comp_ChassisAddOn}}],
+      ['Motherboard', {{anzahl_system_comp_Motherboard}}],
+      ['CPU',         {{anzahl_system_comp_Cpu}}],
+      ['Memory',      {{anzahl_system_comp_Memory}}],
+      ['PSU',         {{anzahl_system_comp_PSU}}],
+      ['HDD',         {{anzahl_system_comp_HDD}}],
+      ['HeatSink',    {{anzahl_system_comp_HeatSink}}],
+      ['Fan',         {{anzahl_system_comp_Fan}}],
+      ['Cable',       {{anzahl_system_comp_Cable}}],
+      ['PCBA',        {{anzahl_system_comp_PCBA}}],
+      ['PCIe',        {{anzahl_system_comp_PCIe}}]
+    ]);
+
+    var options = {
+      title: 'System Components'
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('systemcomponentes'));
+
+    chart.draw(data, options);
+  }
+
+</script>
+
+
+
+
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">System Measurements</h3>
+      </div>
+      <div class="panel-body">
+
+
+        <div id="piechart_systemmeasurements" style="width: 400px; height: 400px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">System Components</h3>
+      </div>
+      <div class="panel-body">
+        <div id="systemcomponentes" style="width: 400px; height: 400px;"></div>
+
       </div>
     </div>
   </div>

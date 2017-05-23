@@ -24,305 +24,302 @@ class cm_table_list_generator(object):
         obj = Cmeasure_obj
 
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name1,
-                obj.measureValues_id_fk.sensorValue_id_fk.value1,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max1
+                    obj.measureValues.sensorName_id_fk.name1,
+                    obj.measureValues.sensorValue_id_fk.value1,
+                    obj.measureValues.sensorMax_id_fk.max1
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name2,
-                obj.measureValues_id_fk.sensorValue_id_fk.value2,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max2
+                    obj.measureValues.sensorName_id_fk.name2,
+                    obj.measureValues.sensorValue_id_fk.value2,
+                    obj.measureValues.sensorMax_id_fk.max2
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name3,
-                obj.measureValues_id_fk.sensorValue_id_fk.value3,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max3
+                    obj.measureValues.sensorName_id_fk.name3,
+                    obj.measureValues.sensorValue_id_fk.value3,
+                    obj.measureValues.sensorMax_id_fk.max3
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name4,
-                obj.measureValues_id_fk.sensorValue_id_fk.value4,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max4
+                    obj.measureValues.sensorName_id_fk.name4,
+                    obj.measureValues.sensorValue_id_fk.value4,
+                    obj.measureValues.sensorMax_id_fk.max4
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name5,
-                obj.measureValues_id_fk.sensorValue_id_fk.value5,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max5
+                    obj.measureValues.sensorName_id_fk.name5,
+                    obj.measureValues.sensorValue_id_fk.value5,
+                    obj.measureValues.sensorMax_id_fk.max5
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name6,
-                obj.measureValues_id_fk.sensorValue_id_fk.value6,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max6
+                    obj.measureValues.sensorName_id_fk.name6,
+                    obj.measureValues.sensorValue_id_fk.value6,
+                    obj.measureValues.sensorMax_id_fk.max6
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name7,
-                obj.measureValues_id_fk.sensorValue_id_fk.value7,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max7
+                    obj.measureValues.sensorName_id_fk.name7,
+                    obj.measureValues.sensorValue_id_fk.value7,
+                    obj.measureValues.sensorMax_id_fk.max7
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name8,
-                obj.measureValues_id_fk.sensorValue_id_fk.value8,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max8
+                    obj.measureValues.sensorName_id_fk.name8,
+                    obj.measureValues.sensorValue_id_fk.value8,
+                    obj.measureValues.sensorMax_id_fk.max8
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name9,
-                obj.measureValues_id_fk.sensorValue_id_fk.value9,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max9
+                    obj.measureValues.sensorName_id_fk.name9,
+                    obj.measureValues.sensorValue_id_fk.value9,
+                    obj.measureValues.sensorMax_id_fk.max9
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name10,
-                obj.measureValues_id_fk.sensorValue_id_fk.value10,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max10
-                ))
-
-
-
-        self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name11,
-                obj.measureValues_id_fk.sensorValue_id_fk.value11,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max11
+                    obj.measureValues.sensorName_id_fk.name10,
+                    obj.measureValues.sensorValue_id_fk.value10,
+                    obj.measureValues.sensorMax_id_fk.max10
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name12,
-                obj.measureValues_id_fk.sensorValue_id_fk.value12,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max12
+                    obj.measureValues.sensorName_id_fk.name11,
+                    obj.measureValues.sensorValue_id_fk.value11,
+                    obj.measureValues.sensorMax_id_fk.max11
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name13,
-                obj.measureValues_id_fk.sensorValue_id_fk.value13,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max13
+                    obj.measureValues.sensorName_id_fk.name12,
+                    obj.measureValues.sensorValue_id_fk.value12,
+                    obj.measureValues.sensorMax_id_fk.max12
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name14,
-                obj.measureValues_id_fk.sensorValue_id_fk.value14,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max14
+                    obj.measureValues.sensorName_id_fk.name13,
+                    obj.measureValues.sensorValue_id_fk.value13,
+                    obj.measureValues.sensorMax_id_fk.max13
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name15,
-                obj.measureValues_id_fk.sensorValue_id_fk.value15,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max15
+                    obj.measureValues.sensorName_id_fk.name14,
+                    obj.measureValues.sensorValue_id_fk.value14,
+                    obj.measureValues.sensorMax_id_fk.max14
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name16,
-                obj.measureValues_id_fk.sensorValue_id_fk.value16,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max16
+                    obj.measureValues.sensorName_id_fk.name15,
+                    obj.measureValues.sensorValue_id_fk.value15,
+                    obj.measureValues.sensorMax_id_fk.max15
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name17,
-                obj.measureValues_id_fk.sensorValue_id_fk.value17,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max17
+                    obj.measureValues.sensorName_id_fk.name16,
+                    obj.measureValues.sensorValue_id_fk.value16,
+                    obj.measureValues.sensorMax_id_fk.max16
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name18,
-                obj.measureValues_id_fk.sensorValue_id_fk.value18,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max18
+                    obj.measureValues.sensorName_id_fk.name17,
+                    obj.measureValues.sensorValue_id_fk.value17,
+                    obj.measureValues.sensorMax_id_fk.max17
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name19,
-                obj.measureValues_id_fk.sensorValue_id_fk.value19,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max19
+                    obj.measureValues.sensorName_id_fk.name18,
+                    obj.measureValues.sensorValue_id_fk.value18,
+                    obj.measureValues.sensorMax_id_fk.max18
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name20,
-                obj.measureValues_id_fk.sensorValue_id_fk.value20,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max20
+                    obj.measureValues.sensorName_id_fk.name19,
+                    obj.measureValues.sensorValue_id_fk.value19,
+                    obj.measureValues.sensorMax_id_fk.max19
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name21,
-                obj.measureValues_id_fk.sensorValue_id_fk.value21,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max21
+                    obj.measureValues.sensorName_id_fk.name20,
+                    obj.measureValues.sensorValue_id_fk.value20,
+                    obj.measureValues.sensorMax_id_fk.max20
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name22,
-                obj.measureValues_id_fk.sensorValue_id_fk.value22,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max22
+                    obj.measureValues.sensorName_id_fk.name21,
+                    obj.measureValues.sensorValue_id_fk.value21,
+                    obj.measureValues.sensorMax_id_fk.max21
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name23,
-                obj.measureValues_id_fk.sensorValue_id_fk.value23,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max23
+                    obj.measureValues.sensorName_id_fk.name22,
+                    obj.measureValues.sensorValue_id_fk.value22,
+                    obj.measureValues.sensorMax_id_fk.max22
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name24,
-                obj.measureValues_id_fk.sensorValue_id_fk.value24,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max24
+                    obj.measureValues.sensorName_id_fk.name23,
+                    obj.measureValues.sensorValue_id_fk.value23,
+                    obj.measureValues.sensorMax_id_fk.max23
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name25,
-                obj.measureValues_id_fk.sensorValue_id_fk.value25,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max25
+                    obj.measureValues.sensorName_id_fk.name24,
+                    obj.measureValues.sensorValue_id_fk.value24,
+                    obj.measureValues.sensorMax_id_fk.max24
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name26,
-                obj.measureValues_id_fk.sensorValue_id_fk.value26,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max26
+                    obj.measureValues.sensorName_id_fk.name25,
+                    obj.measureValues.sensorValue_id_fk.value25,
+                    obj.measureValues.sensorMax_id_fk.max25
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name27,
-                obj.measureValues_id_fk.sensorValue_id_fk.value27,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max27
+                    obj.measureValues.sensorName_id_fk.name26,
+                    obj.measureValues.sensorValue_id_fk.value26,
+                    obj.measureValues.sensorMax_id_fk.max26
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name28,
-                obj.measureValues_id_fk.sensorValue_id_fk.value28,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max28
+                    obj.measureValues.sensorName_id_fk.name27,
+                    obj.measureValues.sensorValue_id_fk.value27,
+                    obj.measureValues.sensorMax_id_fk.max27
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name29,
-                obj.measureValues_id_fk.sensorValue_id_fk.value29,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max29
+                    obj.measureValues.sensorName_id_fk.name28,
+                    obj.measureValues.sensorValue_id_fk.value28,
+                    obj.measureValues.sensorMax_id_fk.max28
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name30,
-                obj.measureValues_id_fk.sensorValue_id_fk.value30,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max30
+                    obj.measureValues.sensorName_id_fk.name29,
+                    obj.measureValues.sensorValue_id_fk.value29,
+                    obj.measureValues.sensorMax_id_fk.max29
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name31,
-                obj.measureValues_id_fk.sensorValue_id_fk.value31,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max31
+                    obj.measureValues.sensorName_id_fk.name30,
+                    obj.measureValues.sensorValue_id_fk.value30,
+                    obj.measureValues.sensorMax_id_fk.max30
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name32,
-                obj.measureValues_id_fk.sensorValue_id_fk.value32,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max32
+                    obj.measureValues.sensorName_id_fk.name31,
+                    obj.measureValues.sensorValue_id_fk.value31,
+                    obj.measureValues.sensorMax_id_fk.max31
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name33,
-                obj.measureValues_id_fk.sensorValue_id_fk.value33,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max33
+                    obj.measureValues.sensorName_id_fk.name32,
+                    obj.measureValues.sensorValue_id_fk.value32,
+                    obj.measureValues.sensorMax_id_fk.max32
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name34,
-                obj.measureValues_id_fk.sensorValue_id_fk.value34,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max34
+                    obj.measureValues.sensorName_id_fk.name33,
+                    obj.measureValues.sensorValue_id_fk.value33,
+                    obj.measureValues.sensorMax_id_fk.max33
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name35,
-                obj.measureValues_id_fk.sensorValue_id_fk.value35,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max35
+                    obj.measureValues.sensorName_id_fk.name34,
+                    obj.measureValues.sensorValue_id_fk.value34,
+                    obj.measureValues.sensorMax_id_fk.max34
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name36,
-                obj.measureValues_id_fk.sensorValue_id_fk.value36,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max36
+                    obj.measureValues.sensorName_id_fk.name35,
+                    obj.measureValues.sensorValue_id_fk.value35,
+                    obj.measureValues.sensorMax_id_fk.max35
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name37,
-                obj.measureValues_id_fk.sensorValue_id_fk.value37,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max37
+                    obj.measureValues.sensorName_id_fk.name36,
+                    obj.measureValues.sensorValue_id_fk.value36,
+                    obj.measureValues.sensorMax_id_fk.max36
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name38,
-                obj.measureValues_id_fk.sensorValue_id_fk.value38,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max38
+                    obj.measureValues.sensorName_id_fk.name37,
+                    obj.measureValues.sensorValue_id_fk.value37,
+                    obj.measureValues.sensorMax_id_fk.max37
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name39,
-                obj.measureValues_id_fk.sensorValue_id_fk.value39,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max39
+                    obj.measureValues.sensorName_id_fk.name38,
+                    obj.measureValues.sensorValue_id_fk.value38,
+                    obj.measureValues.sensorMax_id_fk.max38
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name40,
-                obj.measureValues_id_fk.sensorValue_id_fk.value40,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max40
+                    obj.measureValues.sensorName_id_fk.name39,
+                    obj.measureValues.sensorValue_id_fk.value39,
+                    obj.measureValues.sensorMax_id_fk.max39
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name41,
-                obj.measureValues_id_fk.sensorValue_id_fk.value41,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max41
+                    obj.measureValues.sensorName_id_fk.name40,
+                    obj.measureValues.sensorValue_id_fk.value40,
+                    obj.measureValues.sensorMax_id_fk.max40
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name42,
-                obj.measureValues_id_fk.sensorValue_id_fk.value42,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max42
+                    obj.measureValues.sensorName_id_fk.name41,
+                    obj.measureValues.sensorValue_id_fk.value41,
+                    obj.measureValues.sensorMax_id_fk.max41
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name43,
-                obj.measureValues_id_fk.sensorValue_id_fk.value43,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max43
+                    obj.measureValues.sensorName_id_fk.name42,
+                    obj.measureValues.sensorValue_id_fk.value42,
+                    obj.measureValues.sensorMax_id_fk.max42
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name44,
-                obj.measureValues_id_fk.sensorValue_id_fk.value44,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max44
+                    obj.measureValues.sensorName_id_fk.name43,
+                    obj.measureValues.sensorValue_id_fk.value43,
+                    obj.measureValues.sensorMax_id_fk.max43
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name45,
-                obj.measureValues_id_fk.sensorValue_id_fk.value45,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max45
+                    obj.measureValues.sensorName_id_fk.name44,
+                    obj.measureValues.sensorValue_id_fk.value44,
+                    obj.measureValues.sensorMax_id_fk.max44
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name46,
-                obj.measureValues_id_fk.sensorValue_id_fk.value46,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max46
+                    obj.measureValues.sensorName_id_fk.name45,
+                    obj.measureValues.sensorValue_id_fk.value45,
+                    obj.measureValues.sensorMax_id_fk.max45
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name47,
-                obj.measureValues_id_fk.sensorValue_id_fk.value47,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max47
+                    obj.measureValues.sensorName_id_fk.name46,
+                    obj.measureValues.sensorValue_id_fk.value46,
+                    obj.measureValues.sensorMax_id_fk.max46
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name48,
-                obj.measureValues_id_fk.sensorValue_id_fk.value48,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max48
+                    obj.measureValues.sensorName_id_fk.name47,
+                    obj.measureValues.sensorValue_id_fk.value47,
+                    obj.measureValues.sensorMax_id_fk.max47
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name49,
-                obj.measureValues_id_fk.sensorValue_id_fk.value49,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max49
+                    obj.measureValues.sensorName_id_fk.name48,
+                    obj.measureValues.sensorValue_id_fk.value48,
+                    obj.measureValues.sensorMax_id_fk.max48
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name50,
-                obj.measureValues_id_fk.sensorValue_id_fk.value50,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max50
+                    obj.measureValues.sensorName_id_fk.name49,
+                    obj.measureValues.sensorValue_id_fk.value49,
+                    obj.measureValues.sensorMax_id_fk.max49
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name51,
-                obj.measureValues_id_fk.sensorValue_id_fk.value51,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max51
+                    obj.measureValues.sensorName_id_fk.name50,
+                    obj.measureValues.sensorValue_id_fk.value50,
+                    obj.measureValues.sensorMax_id_fk.max50
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name52,
-                obj.measureValues_id_fk.sensorValue_id_fk.value52,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max52
+                    obj.measureValues.sensorName_id_fk.name51,
+                    obj.measureValues.sensorValue_id_fk.value51,
+                    obj.measureValues.sensorMax_id_fk.max51
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name53,
-                obj.measureValues_id_fk.sensorValue_id_fk.value53,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max53
+                    obj.measureValues.sensorName_id_fk.name52,
+                    obj.measureValues.sensorValue_id_fk.value52,
+                    obj.measureValues.sensorMax_id_fk.max52
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name54,
-                obj.measureValues_id_fk.sensorValue_id_fk.value54,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max54
+                    obj.measureValues.sensorName_id_fk.name53,
+                    obj.measureValues.sensorValue_id_fk.value53,
+                    obj.measureValues.sensorMax_id_fk.max53
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name55,
-                obj.measureValues_id_fk.sensorValue_id_fk.value55,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max55
+                    obj.measureValues.sensorName_id_fk.name54,
+                    obj.measureValues.sensorValue_id_fk.value54,
+                    obj.measureValues.sensorMax_id_fk.max54
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name56,
-                obj.measureValues_id_fk.sensorValue_id_fk.value56,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max56
+                    obj.measureValues.sensorName_id_fk.name55,
+                    obj.measureValues.sensorValue_id_fk.value55,
+                    obj.measureValues.sensorMax_id_fk.max55
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name57,
-                obj.measureValues_id_fk.sensorValue_id_fk.value57,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max57
+                    obj.measureValues.sensorName_id_fk.name56,
+                    obj.measureValues.sensorValue_id_fk.value56,
+                    obj.measureValues.sensorMax_id_fk.max56
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name58,
-                obj.measureValues_id_fk.sensorValue_id_fk.value58,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max58
+                    obj.measureValues.sensorName_id_fk.name57,
+                    obj.measureValues.sensorValue_id_fk.value57,
+                    obj.measureValues.sensorMax_id_fk.max57
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name59,
-                obj.measureValues_id_fk.sensorValue_id_fk.value59,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max59
+                    obj.measureValues.sensorName_id_fk.name58,
+                    obj.measureValues.sensorValue_id_fk.value58,
+                    obj.measureValues.sensorMax_id_fk.max58
                 ))
         self.table_rows.append(cm_table_row(
-                  obj.measureValues_id_fk.sensorName_id_fk.name60,
-                obj.measureValues_id_fk.sensorValue_id_fk.value60,
-                    obj.measureValues_id_fk.sensorMax_id_fk.max60
+                    obj.measureValues.sensorName_id_fk.name59,
+                    obj.measureValues.sensorValue_id_fk.value59,
+                    obj.measureValues.sensorMax_id_fk.max59
+                ))
+        self.table_rows.append(cm_table_row(
+                    obj.measureValues.sensorName_id_fk.name60,
+                    obj.measureValues.sensorValue_id_fk.value60,
+                    obj.measureValues.sensorMax_id_fk.max60
                 ))
