@@ -9,11 +9,13 @@ measurement/__pycache__/
 measurement/migrations/
 measurement/models/__pycache__/
 measurement/views/__pycache__/
+measurement/forms/__pycache__/
 
 planner/__pycache__/
 planner/migrations/
 planner/models/__pycache__/
 planner/views/__pycache__/
+planner/forms/__pycache__/
 
 components/__pycache__/
 components/migrations/
