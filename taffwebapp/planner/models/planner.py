@@ -28,10 +28,10 @@ class schedule(models.Model):
     public = models.BooleanField(default=False)
 
     # main_connection_avalible field
-    #   bevor schedule items an einen schedule hinzugefuegt werden
-    #   braucht der schedule eine main Connection
-    #   das kann ein system oder eine componente sein
-    #   - in den tables
+    #   bevor schedule items can connect to a schedule
+    #   its importand that a schedul has a main connection
+    #   a main connection can be a component or a system object
+    #   - this is a item from the following tabels
     #       - schedule_system_connection
     #       - schedule_component_connection
     #   schliest aber nicht aus das mehrere systeme oder componente an eine
@@ -63,7 +63,12 @@ class scheduleItem(models.Model):
 
     # wenn dieses Feld True ist dann soll in der schedule item depencis Tablle
     # nachgescht werden und die abhaengikeiten eingepflegt werden
-    item_depencis_avalible = models.BooleanField(default=False)
+    item_dependencies_avalible = models.BooleanField(default=False)
+
+
+class schedule_item_dependencies(models.Model):
+    master = models.ForeignKey(scheduleItem, related_name="depencis_MASTER")
+    slave = models.ForeignKey(scheduleItem, related_name="depencis_SLAVE")
 
 
 class schedule_scheduleItem_connection(models.Model):
