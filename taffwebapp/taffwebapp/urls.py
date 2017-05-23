@@ -26,6 +26,7 @@ urlpatterns = [
 
     url(r'^schedule/', include('schedule.urls')),
     url(r'^comp/', include('components.urls')),
+    url(r'^planner/', include('planner.urls')),
     url(r'', include('overview.urls')),
 
     url(r'^admin/', admin.site.urls),

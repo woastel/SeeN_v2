@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     'todos.apps.TodosConfig',
     'schedule.apps.ScheduleConfig',
+    'planner.apps.PlannerConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
