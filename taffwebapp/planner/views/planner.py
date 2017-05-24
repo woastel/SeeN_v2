@@ -2,6 +2,8 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.contrib import messages
+from django.contrib.messages import get_messages
 from datetime import datetime
 
 from planner.forms import form_planner
@@ -18,7 +20,6 @@ class IndexView(generic.View):
         context = {}
 
         return render(request, self.template_name, context)
-
 
 class CreateSchedule(generic.View):
     form_class = form_planner.Form_Create_PlannerSchedule
@@ -59,7 +60,6 @@ class CreateSchedule(generic.View):
         context["panel_titel"] = self.panel_titel
         return render(request, self.template_name, context)
 
-
 class ScheduleListView(generic.View):
     template_name = 'planner/schedule_list.html'
     panel_titel = 'List of all Schedules'
@@ -73,7 +73,9 @@ class ScheduleListView(generic.View):
 
         context['schedule_list'] = scheduleList
 
+
         context['panel_titel'] = self.panel_titel
+
 
         return render(request, self.template_name, context)
 
@@ -82,25 +84,16 @@ class ScheduleDetailView(generic.View):
     panel_titel = 'Detail View of a Schedule'
     form_class_schedule_system_connection = form_planner.Form_Create_Schedule_System_Connection
     form_class_schedule_component_connection = form_planner.Form_Create_Schedule_Component_Connection
+    form_class_create_schedule = form_planner.Form_Create_PlannerSchedule
 
     def get(self, request, *args, **kwargs):
         # Inital context for the render function
-
         context = {}
         context['panel_titel'] = self.panel_titel
         # add the forms to the context
         context['form_class_schedule_system_connection'] = self.form_class_schedule_system_connection
         context['form_class_schedule_component_connection'] = self.form_class_schedule_component_connection
-        # Set the Alert Variables to False (default)
-        context['alert_success_avalible'] = False
-        context['alert_success'] = ""
-        context['alert_warning_avalible'] = False
-        context['alert_warning'] = ""
-        context['alert_danger_avalible'] = False
-        context['alert_danger'] = ""
 
-        print("KW in get method")
-        print(kwargs)
 
 
         # get the schedule id from the kwargs
@@ -113,25 +106,9 @@ class ScheduleDetailView(generic.View):
             context['schedule_item'] = scheduleItem
 
             if scheduleItem.main_connection_avalible == False:
-
-                context['alert_warning_avalible'] = True
-                context['alert_warning'] = str("Es wurde nicht keine Main Connection ausgewählt bitte erstellen sie eine")
-
-            if "danger" in kwargs:
-                context['alert_danger_avalible'] = True
-                context['alert_danger'] += str('Error - {}'.format(kwargs["danger"]))
-
-
-            if "success" in kwargs:
-                context['alert_success_avalible'] = True
-                context['alert_success'] += str('Success - {}'.format(kwargs["success"]))
-
-            context['alert_success_avalible'] = True
-            context['alert_success'] += str('Pass - Component with id({}) is avalible.'.format(schedule_id))
-
+                messages.warning(request, '<b>Warning</b> Please add a Main Connection - a Main Connection is the first System or Component')
         else:
-            context['alert_danger_avalible'] = True
-            context['alert_danger'] += str('<p>Error - Component with id({}) isnt avalible.</p>'.format(schedule_id))
+            messages.error(request, '<b>Error</b> no Schedule with id {} avalible'.format(schedule_id))
 
         return render(request, self.template_name, context)
 
@@ -153,14 +130,27 @@ class ScheduleDetailView(generic.View):
             instance.schedule = schedule_item
             instance.is_a_main_connection = False
 
+            # Checken ob es schon eine connection mit schedule_item und system gibt
+            # dazu brauchen wir das object
+            test_list = plannermodel.schedule_system_connection.objects.filter(schedule=schedule_item, system=instance.system)
+            # wenn ja dann den vorgang abbrechen und einen fehler ausgeben
+            if len(test_list) != 0:
+                print("Dieses object gibt es schon ")
+                messages.add_message(request, messages.ERROR, '<b>Error:</b> Diese Connection zwischen schedule {} und system {} gibt es schon'.format(schedule_item, instance.system))
+                return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
+
+            # checken ob schon eine main conection vorhandedn ist
+            # wenn nicht das das object als mein connection setzen
             if schedule_item.main_connection_avalible == False:
                 schedule_item.main_connection_avalible = True
                 schedule_item.save()
                 instance.is_a_main_connection = True
 
-
+            # jetzt noch die instance speichern
             instance.save()
-            return redirect(reverse('planner:schedule_detail_with_success', kwargs={'pk': kwargs['pk'], 'success': "asdf"}))
+            # und eine info massage ausgeben
+            messages.add_message(request, messages.INFO, '<b>INFO:</b> Adding System was successfully')
+            return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
 
         if form_schedule_component_connection.is_valid():
             instance = form_schedule_component_connection.save(commit=False)
@@ -169,14 +159,24 @@ class ScheduleDetailView(generic.View):
             instance.schedule = schedule_item
             instance.is_a_main_connection = False
 
+            # Checken ob es schon eine connection mit schedule_item und system gibt
+            # dazu brauchen wir das object
+            test_list = plannermodel.schedule_component_connection.objects.filter(schedule=schedule_item, component=instance.component)
+            # wenn ja dann den vorgang abbrechen und einen fehler ausgeben
+            if len(test_list) != 0:
+                print("Dieses object gibt es schon ")
+                messages.add_message(request, messages.ERROR, '<b>Error:</b> Diese Connection zwischen schedule {} und component {} gibt es schon'.format(schedule_item, instance.component))
+                return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
+
+            # checken ob schon eine main conection vorhandedn ist
+            # wenn nicht das das object als mein connection setzen
             if schedule_item.main_connection_avalible == False:
                 schedule_item.main_connection_avalible = True
                 schedule_item.save()
                 instance.is_a_main_connection = True
 
             instance.save()
-            return redirect(reverse('planner:schedule_detail_with_success', kwargs={'pk': kwargs['pk'], 'success': "component_added"}))
+            messages.add_message(request, messages.INFO, '<b>INFO:</b> Adding Component was successfully')
+            return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
 
-
-
-        return redirect(reverse('planner:schedule_detail_with_danger', kwargs={'pk': kwargs['pk'], 'danger': "Cant_added"}))
+        return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))

@@ -2,7 +2,6 @@
 
 {% block planner_body %}
 
-
 {% if schedule_item.main_connection_avalible == False %}
   <script type="text/javascript">
       $(window).on('load',function(){
@@ -11,45 +10,22 @@
   </script>
 {% endif %}
 
-
-<!-- Alert Boxen -->
-<div class="row">
-  <div class="col-lg-12">
-    {% if alert_danger_avalible == True %}
-      <div class="alert alert-danger" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-         {{ alert_danger | safe }}
-      </div>
-    {% endif %}
-    {% if alert_warning_avalible == True %}
-      <div class="alert alert-warning" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <p> {{ alert_warning | safe }} </p>
-      </div>
-    {% endif %}
-    {% if alert_success_avalible == True %}
-      <div class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <p> {{ alert_success | safe }} </p>
-      </div>
-    {% endif %}
+{% for message in messages %}
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message | safe}}
   </div>
-</div>
+{% endfor %}
 
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
 
 
-<!-- Modal -->
+
+
+
+<!-- Modal add System and Component -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -138,7 +114,7 @@
 
 <!-- Component Detail Box -->
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-9">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"> {{ panel_titel }} </h3>
@@ -153,6 +129,36 @@
       </div>
     </div>
   </div>
+  <div class="col-lg-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"> Options </h3>
+      </div>
+      <div class="panel-body">
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+            Add System or Component
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- List of (schedule <-> system) - connection -->
+<div class="row">
+
+</div>
+
+<!-- List of (schedule <-> component) - connection -->
+<div class="row">
+
+</div>
+
+<!-- List of (schedule <-> schedule_item) - connection -->
+<div class="row">
+
 </div>
 
 {% endblock %}
