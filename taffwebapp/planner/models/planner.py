@@ -39,6 +39,8 @@ class schedule(models.Model):
     main_connection_avalible = models.BooleanField(default=False)
 
 
+
+
 class scheduleItem(models.Model):
 
     objects = InheritanceManager()
@@ -92,6 +94,10 @@ class schedule_system_connection(models.Model):
     #   wenn dieses Feld True ist dann darf der datensatz nicht geloescht werden
     is_a_main_connection = models.BooleanField(default=False)
 
+    def __str__(self):
+        return( str(self.schedule.name) + " " +
+                str(self.system.name))
+
 
 class schedule_component_connection(models.Model):
     schedule = models.ForeignKey(schedule)
@@ -102,3 +108,7 @@ class schedule_component_connection(models.Model):
     # is_a_main_connection
     #   wenn dieses Feld True ist dann darf der datensatz nicht geloescht werden
     is_a_main_connection = models.BooleanField(default=False)
+
+    def __str__(self):
+        return( str(self.schedule.name) + " " +
+                str(self.component.name))

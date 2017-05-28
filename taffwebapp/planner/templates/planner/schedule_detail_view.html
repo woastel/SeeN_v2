@@ -115,7 +115,7 @@
 <!-- Component Detail Box -->
 <div class="row">
   <div class="col-lg-9">
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"> {{ panel_titel }} </h3>
       </div>
@@ -130,7 +130,7 @@
     </div>
   </div>
   <div class="col-lg-3">
-    <div class="panel panel-primary">
+    <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"> Options </h3>
       </div>
@@ -148,12 +148,68 @@
 
 <!-- List of (schedule <-> system) - connection -->
 <div class="row">
-
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> System Connection </h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table id="ddddd" class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>System</td>
+                <td>Is Main Connection</td>
+                <td>delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in schedule_system_connection %}
+                <tr>
+                  <td>{{item.system.name}}</td>
+                  <td>{{item.is_a_main_connection}}</td>
+                  <td>delete</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- List of (schedule <-> component) - connection -->
 <div class="row">
-
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"> Component Connection </h3>
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table id="ddddd" class="table table-bordered">
+            <thead>
+              <tr class="warning">
+                <td>Component</td>
+                <td>Is Main Connection</td>
+                <td>Delete</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in schedule_component_connection %}
+                <tr>
+                  <td>{{item.component.name}}</td>
+                  <td>{{item.is_a_main_connection}}</td>
+                  <td>delete</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- List of (schedule <-> schedule_item) - connection -->

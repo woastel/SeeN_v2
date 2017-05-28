@@ -10,6 +10,11 @@ from planner.forms import form_planner
 
 from planner.models import planner as plannermodel
 
+from planner.models.planner import (
+        schedule_scheduleItem_connection,
+        schedule_system_connection,
+        schedule_component_connection)
+
 
 
 class IndexView(generic.View):
@@ -98,15 +103,38 @@ class ScheduleDetailView(generic.View):
 
         # get the schedule id from the kwargs
         schedule_id = kwargs["pk"]
-        # get a schedule model by the schedule id
+
+        # erstmal den schedule holen der detailiert angezeigt werden soll - ahand der id
         scheduleItem_list = plannermodel.schedule.objects.filter(id=schedule_id)
-
+        # jetzt checken ob in der queryset liste ein schedule enthalten ist
+        # wenn nicht dann einen fehler ausgeben
         if len(scheduleItem_list) != 0:
+            # die laenge der liste kann nur 1 oder 0 sein
             scheduleItem = scheduleItem_list[0]
+            # jetzt im context abspeichern
             context['schedule_item'] = scheduleItem
-
+            # wenn das scheduleitem keine main connection hat dann einen fehler ausgeben
             if scheduleItem.main_connection_avalible == False:
                 messages.warning(request, '<b>Warning</b> Please add a Main Connection - a Main Connection is the first System or Component')
+
+            # hier werden jetzt die listen an connections im context abgespeichert
+
+            # liste von -- schedule system connections holen
+            var_list = schedule_system_connection.objects.filter(schedule=scheduleItem)
+            context['schedule_system_connection'] = var_list
+            # liste von -- -schedule component connections holen
+            var_list = schedule_component_connection.objects.filter(schedule=scheduleItem)
+            context['schedule_component_connection'] = var_list
+
+
+
+            ###########################################################################
+
+
+
+
+
+
         else:
             messages.error(request, '<b>Error</b> no Schedule with id {} avalible'.format(schedule_id))
 
