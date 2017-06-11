@@ -47,6 +47,8 @@ class scheduleItem(models.Model):
 
     schedule_item_id = models.AutoField(primary_key=True)
 
+    #
+    name = models.CharField(default="name", max_length=100)
     # Dates
     date_creation = models.DateTimeField()
     date_update = models.DateTimeField()

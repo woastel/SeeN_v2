@@ -26,7 +26,7 @@
 
 
 <!-- Modal add System and Component -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="add_system_component" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
 
@@ -109,7 +109,53 @@
   </div>
 </div>
 
+<div class="modal fade" id="add_item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
 
+          <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Use a System for main connection</h4>
+            </div>
+            <div class="modal-body">
+              <script>
+                  $(function () {
+                      $('.datetime-input').datetimepicker({
+                          format:'YYYY-MM-DD HH:mm:ss'
+                      });
+                  });
+              </script>
+              {% for field in form_class_create_schedule_item %}
+
+                <div class="form-group">
+                  <div class="col-lg-offset-1 col-lg-4">
+                    <label class="control-label">{{ field.label_tag }}</label>
+                  </div>
+                  <div class="col-lg-6">{{ field}}</div>
+                  <div class="col-lg-1">
+                    <span class="text-danger small">{{ field.errors }}</span>
+                  </div>
+                </div>
+
+              {% endfor %}
+            </div>
+            <div class="modal-footer">
+              <div class="form-group">
+                <div class="col-lg-offset-1 col-lg-2">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+                <div class="col-lg-offset-6 col-lg-3">
+                  <button type="submit" class="btn btn-success">OK</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+    </div>
+  </div>
+</div>
 
 
 <!-- Component Detail Box -->
@@ -136,9 +182,29 @@
       </div>
       <div class="panel-body">
         <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add_system_component">
             Add System or Component
           </button>
+
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#add_item">
+            Add Schedule Item
+          </button>
+
+
+        </div>
+        <h5>Edit Schedule</h5>
+        <div class="btn-group-vertical" style="width: 180px;" role="group" aria-label="...">
+
+          <button type="button" class="btn btn-default" data-toggle="modal">
+            Set Public
+          </button>
+
+          <button type="button" class="btn btn-default" data-toggle="modal">
+            Set Infotext
+          </button>
+
+
         </div>
       </div>
     </div>
@@ -146,9 +212,10 @@
 </div>
 
 
-<!-- List of (schedule <-> system) - connection -->
+
 <div class="row">
-  <div class="col-lg-12">
+  <!-- List of (schedule <-> system) - connection -->
+  <div class="col-lg-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"> System Connection </h3>
@@ -177,11 +244,9 @@
       </div>
     </div>
   </div>
-</div>
 
-<!-- List of (schedule <-> component) - connection -->
-<div class="row">
-  <div class="col-lg-12">
+  <!-- List of (schedule <-> component) - connection -->
+  <div class="col-lg-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"> Component Connection </h3>
@@ -212,9 +277,32 @@
   </div>
 </div>
 
+
 <!-- List of (schedule <-> schedule_item) - connection -->
 <div class="row">
 
+
+
+
+  {% for item in schedule_scheduleItem_connection %}
+
+    <div class="col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"> {{ item.schedule_item.name }} </h3>
+        </div>
+        <div class="panel-body">
+          <p>Item ID: {{ item.schedule_item.schedule_item_id}}</p>
+          <p>Creator: {{ item.schedule_item.user_creation}}</p>
+          <p>Start: {{ item.schedule_item.item_start_date_avalible }} - {{ item.schedule_item.item_start_date }}</p>
+          <p>End: {{ item.schedule_item.item_end_date_avalible }} - {{ item.schedule_item.item_end_date }}</p>
+          <p>Duration: {{ item.schedule_item.item_duration_avalible }} - {{ item.schedule_item.item_duration }}</p>
+          <p>Dependencies: {{ item.schedule_item.item_dependencies_avalible}}</p>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
 </div>
 
 {% endblock %}

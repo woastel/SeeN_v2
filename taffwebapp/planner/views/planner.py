@@ -10,10 +10,7 @@ from planner.forms import form_planner
 
 from planner.models import planner as plannermodel
 
-from planner.models.planner import (
-        schedule_scheduleItem_connection,
-        schedule_system_connection,
-        schedule_component_connection)
+
 
 
 
@@ -90,50 +87,59 @@ class ScheduleDetailView(generic.View):
     form_class_schedule_system_connection = form_planner.Form_Create_Schedule_System_Connection
     form_class_schedule_component_connection = form_planner.Form_Create_Schedule_Component_Connection
     form_class_create_schedule = form_planner.Form_Create_PlannerSchedule
+    form_class_create_schedule_item = form_planner.Form_Create_Schedule_Item
 
-    def get(self, request, *args, **kwargs):
+    form_class_update_schedule_public = form_planner.Form_Update_Schedule_Public
+
+
+    def context_init(self):
+
         # Inital context for the render function
         context = {}
         context['panel_titel'] = self.panel_titel
         # add the forms to the context
         context['form_class_schedule_system_connection'] = self.form_class_schedule_system_connection
         context['form_class_schedule_component_connection'] = self.form_class_schedule_component_connection
+        context['form_class_create_schedule_item'] = self.form_class_create_schedule_item
+        return context
 
+    def get(self, request, *args, **kwargs):
+        # Inital context for the render function
+        context = self.context_init()
 
 
         # get the schedule id from the kwargs
         schedule_id = kwargs["pk"]
 
         # erstmal den schedule holen der detailiert angezeigt werden soll - ahand der id
-        scheduleItem_list = plannermodel.schedule.objects.filter(id=schedule_id)
+        schedule_list = plannermodel.schedule.objects.filter(id=schedule_id)
         # jetzt checken ob in der queryset liste ein schedule enthalten ist
         # wenn nicht dann einen fehler ausgeben
-        if len(scheduleItem_list) != 0:
+        if len(schedule_list) != 0:
             # die laenge der liste kann nur 1 oder 0 sein
-            scheduleItem = scheduleItem_list[0]
+            schedule = schedule_list[0]
             # jetzt im context abspeichern
-            context['schedule_item'] = scheduleItem
-            # wenn das scheduleitem keine main connection hat dann einen fehler ausgeben
-            if scheduleItem.main_connection_avalible == False:
+            context['schedule_item'] = schedule
+            # wenn das schedule keine main connection hat dann einen fehler ausgeben
+            if schedule.main_connection_avalible == False:
                 messages.warning(request, '<b>Warning</b> Please add a Main Connection - a Main Connection is the first System or Component')
 
             # hier werden jetzt die listen an connections im context abgespeichert
 
             # liste von -- schedule system connections holen
-            var_list = schedule_system_connection.objects.filter(schedule=scheduleItem)
+            var_list = plannermodel.schedule_system_connection.objects.filter(schedule=schedule)
             context['schedule_system_connection'] = var_list
             # liste von -- -schedule component connections holen
-            var_list = schedule_component_connection.objects.filter(schedule=scheduleItem)
+            var_list = plannermodel.schedule_component_connection.objects.filter(schedule=schedule)
             context['schedule_component_connection'] = var_list
-
-
-
-            ###########################################################################
-
-
-
-
-
+            # liste von schedule items holen
+            var_list = plannermodel.schedule_scheduleItem_connection.objects.filter(schedule=schedule)
+            context['schedule_scheduleItem_connection'] = var_list
+            print(var_list)
+            for item in var_list:
+                a = plannermodel.schedule_scheduleItem_connection(item)
+                print(item.id)
+                print(a.id)
 
         else:
             messages.error(request, '<b>Error</b> no Schedule with id {} avalible'.format(schedule_id))
@@ -141,16 +147,22 @@ class ScheduleDetailView(generic.View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        context = {}
-        context['panel_titel'] = self.panel_titel
-        context['form_class_schedule_system_connection'] = self.form_class_schedule_system_connection
-        context['form_class_schedule_component_connection'] = self.form_class_schedule_component_connection
-
-        form_schedule_system_connection = self.form_class_schedule_system_connection(request.POST)
-        form_schedule_component_connection = self.form_class_schedule_component_connection(request.POST)
+        context = self.context_init()
 
         schedule_item = plannermodel.schedule.objects.filter(pk=kwargs['pk'])[0]
 
+
+        form_schedule_system_connection = self.form_class_schedule_system_connection(request.POST)
+        form_schedule_component_connection = self.form_class_schedule_component_connection(request.POST)
+        form_schedule_item = self.form_class_create_schedule_item(request.POST)
+
+
+
+
+
+        # hier soll noch eine
+        # if ... else if ... else if
+        # eingebaut werden
         if form_schedule_system_connection.is_valid():
             instance = form_schedule_system_connection.save(commit=False)
             instance.date_creation = datetime.now()
@@ -206,5 +218,25 @@ class ScheduleDetailView(generic.View):
             instance.save()
             messages.add_message(request, messages.INFO, '<b>INFO:</b> Adding Component was successfully')
             return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
+
+        if form_schedule_item.is_valid():
+            instance = form_schedule_item.save(commit=False)
+            instance.date_creation = datetime.now()
+            instance.date_update = datetime.now()
+            instance.user_creation = request.user
+            instance.user_update = request.user
+            instance.save()
+
+            item = plannermodel.schedule_scheduleItem_connection()
+            item.schedule = schedule_item
+            item.schedule_item = instance
+            item.user_creation = request.user
+            item.date_creation = datetime.now()
+            item.save()
+
+
+            messages.add_message(request, messages.INFO, '<b>INFO:</b> Adding Component was successfully')
+            return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
+
 
         return redirect(reverse('planner:schedule_detail', kwargs={'pk': kwargs['pk']}))
