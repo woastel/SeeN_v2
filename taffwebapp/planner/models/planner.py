@@ -10,7 +10,7 @@ from components.models import Component
 
 
 class schedule(models.Model):
-
+    # this is the schedule name
     name = models.CharField(max_length=100)
     information = models.TextField(max_length=5000)
 
