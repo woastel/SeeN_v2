@@ -160,9 +160,10 @@ class ScheduleDetailView(generic.View):
 
 
 
-        # hier soll noch eine
-        # if ... else if ... else if
-        # eingebaut werden
+        # Ueberpruefung der forms
+        #    - schedule system connection
+        #    - schedule componenten connection
+        #    - schedule scheduleitem connection
         if form_schedule_system_connection.is_valid():
             instance = form_schedule_system_connection.save(commit=False)
             instance.date_creation = datetime.now()
