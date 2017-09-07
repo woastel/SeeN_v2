@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^todos/', include('todos.urls')),
 
     url(r'^measurement/', include('measurement.urls')),
+    url(r'^milestones/', include('milestones.urls')),
 
     url(r'^schedule/', include('schedule.urls')),
     url(r'^comp/', include('components.urls')),

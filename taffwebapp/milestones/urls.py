@@ -1,12 +1,12 @@
 from django.conf.urls import url
 from . import views
 
-from milestones.views import ()
+from milestones.views import milestones
 
 app_name = 'milestones'
 
 urlpatterns = [
     # Measurement (general) Views
-    url(r'^milestones/$',          view_measurement.IndexView.as_view() ,                          name='index'),
+    url(r'^milestones/$',          milestones.IndexView.as_view() ,                          name='index'),
 
 ]

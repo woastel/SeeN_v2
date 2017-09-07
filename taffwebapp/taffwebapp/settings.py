@@ -36,13 +36,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'overview.apps.OverviewConfig',
     'accounts.apps.AccountsConfig',
-
-    'measurement.apps.MeasurementConfig',
-
-    'eut.apps.EutConfig',
-    'system.apps.SystemConfig',
     'components.apps.ComponentsConfig',
+    'eut.apps.EutConfig',
+    'measurement.apps.MeasurementConfig',
+    'milestones.apps.MilestonesConfig',
 
+    'system.apps.SystemConfig',
     'todos.apps.TodosConfig',
     'schedule.apps.ScheduleConfig',
     'planner.apps.PlannerConfig',
