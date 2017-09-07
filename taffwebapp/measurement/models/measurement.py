@@ -36,6 +36,10 @@ class measurement(models.Model):
 
 
     def save(self, *args, **kwargs):
+        """
+            Wichtig das Sperren des EUTs.
+            Der EUT soll nach dem zuweisen zu einer Messung nicht mehr geändert werden.
+        """
         print(self.eut.locked)
         eut_list = Eut.objects.filter(id=self.eut.id)
         eut = eut_list[0]

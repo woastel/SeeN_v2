@@ -8,7 +8,6 @@ python.exe .\manage.py makemigrations system
 python.exe .\manage.py makemigrations accounts
 python.exe .\manage.py makemigrations todos
 python.exe .\manage.py makemigrations measurement
-
+python.exe .\manage.py makemigrations milestone
 python.exe .\manage.py makemigrations climaticmeasurement
-
 python.exe .\manage.py migrate
