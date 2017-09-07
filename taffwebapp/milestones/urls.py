@@ -7,6 +7,10 @@ app_name = 'milestones'
 
 urlpatterns = [
     # Measurement (general) Views
-    url(r'^milestones/$',          milestones.IndexView.as_view() ,                          name='index'),
-    url(r'^createMilestone/$',          milestones.Create_Milestone.as_view() ,                          name='create_milestone'),
+    url(r'^milestones/$', milestones.IndexView.as_view(), name='index'),
+    url(r'^createMilestone/$', milestones.Create_Milestone.as_view(), name='create_milestone'),
+    # not implemented now
+    url(r'^createMilestoneTask/$', milestones.Create_Milestone.as_view(), name='creaste_MilestoneTask'),
+    url(r'^createMilestoneSystemConnection/$', milestones.Create_Milestone.as_view(), name='create_MilestoneSystemConnection'),
+    url(r'^createMilestoneComponentConnection/$', milestones.Create_Milestone.as_view(), name='create_MilestoneComponentConnection'),
 ]
